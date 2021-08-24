@@ -1,0 +1,85 @@
+namespace dialogs
+
+import apis.RecordColor
+import com.amazon.alexa.ask.conversations.Inform
+import com.amazon.alexa.ask.conversations.Invoke
+import com.amazon.alexa.ask.conversations.MultiModalResponse
+import com.amazon.alexa.ask.conversations.Notify
+import com.amazon.alexa.ask.conversations.Request
+import com.amazon.alexa.ask.conversations.expect
+import com.amazon.alexa.ask.conversations.response
+import com.amazon.alexa.schema.Nothing
+import displays.GetFavoriteColorView
+import displays.RecordColorSuccessView
+import displays.RequestFavoriteColorView
+import prompts.GetFavoriteColorSuccessPrompt
+import prompts.RecordColorSuccessPrompt
+import prompts.RequestFavoriteColorPrompt
+import types.PAYLOAD_TYPE0
+import types.PAYLOAD_TYPE1
+import utterances.GetFavoriteColor
+import utterances.RecordFavoriteColor
+import utterances.SpecifyFavoriteColor
+
+dialog Nothing dialogName_GetFavoriteColor() {
+  sample {
+    expect(
+      act = Invoke,
+      event = GetFavoriteColor
+    )
+    favoriteColor0 = apis.GetFavoriteColor()
+    response(
+      act = Notify {
+        success = true,
+        actionName = apis.GetFavoriteColor
+      },
+      payload = PAYLOAD_TYPE0 {
+        favoriteColor = favoriteColor0
+      },
+      response = MultiModalResponse {
+        apla = GetFavoriteColorSuccessPrompt,
+        apl = GetFavoriteColorView
+      }
+    )
+  }
+}
+
+dialog Nothing dialogName_RecordFavoriteColor() {
+  sample {
+    expect(
+      act = Invoke,
+      event = RecordFavoriteColor
+    )
+    response(
+      act = Request {
+        arguments = [
+          RecordColor.arguments.color
+        ]
+      },
+      response = MultiModalResponse {
+        apla = RequestFavoriteColorPrompt,
+        apl = RequestFavoriteColorView
+      }
+    )
+    SpecifyFavoriteColorRequest = expect(
+      act = Inform,
+      event = SpecifyFavoriteColor
+    )
+    favoriteColor0 = RecordColor(
+      color = SpecifyFavoriteColorRequest.color
+    )
+    response(
+      act = Notify {
+        success = true,
+        actionName = RecordColor
+      },
+      payload = PAYLOAD_TYPE1 {
+        favoriteColor = favoriteColor0
+      },
+      response = MultiModalResponse {
+        apla = RecordColorSuccessPrompt,
+        apl = RecordColorSuccessView
+      }
+    )
+  }
+}

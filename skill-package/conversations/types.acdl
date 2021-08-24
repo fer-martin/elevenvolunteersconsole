@@ -1,0 +1,19 @@
+namespace types
+
+import com.amazon.ask.types.builtins.AMAZON.Color
+
+type PAYLOAD_TYPE0 {
+  FavoriteColor favoriteColor
+}
+
+type PAYLOAD_TYPE1 {
+  FavoriteColor favoriteColor
+}
+
+type FavoriteColor {
+  Color color
+}
+
+type SpecifyFavoriteColorRequestType {
+  Color color
+}

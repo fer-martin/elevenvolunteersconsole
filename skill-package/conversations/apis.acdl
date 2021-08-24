@@ -1,0 +1,8 @@
+namespace apis
+
+import com.amazon.ask.types.builtins.AMAZON.Color
+import types.FavoriteColor
+
+action FavoriteColor RecordColor(Color color)
+
+action FavoriteColor GetFavoriteColor()

@@ -1,0 +1,28 @@
+namespace utterances
+
+import com.amazon.alexa.ask.conversations.utterances
+import types.SpecifyFavoriteColorRequestType
+
+RecordFavoriteColor = utterances(
+  samples = [
+    "store my favorite color",
+    "save my favorite color"
+  ]
+)
+
+GetFavoriteColor = utterances(
+  samples = [
+    "get my favorite color",
+    "what is my favorite color"
+  ]
+)
+
+SpecifyFavoriteColor = utterances<SpecifyFavoriteColorRequestType>(
+  samples = [
+    "{color}",
+    "record my favorite color as {color}",
+    "save my favorite color as {color}",
+    "I love {color}",
+    "my favorite color is {color}"
+  ]
+)
