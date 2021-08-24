@@ -27,6 +27,9 @@ import prompts.response0Prompt0
 import types.PAYLOAD_TYPE0
 import types.PAYLOAD_TYPE1
 import types.PAYLOAD_TYPE2
+import types.PAYLOAD_TYPE3
+import types.PAYLOAD_TYPE4
+import types.PAYLOAD_TYPE5
 import utterances.GetFavoriteColor
 import utterances.RecordFavoriteColor
 import utterances.SpecifyFavoriteColor
@@ -105,6 +108,22 @@ dialog Nothing dialogName_RequestVolunteer1() {
       act = Invoke,
       event = USetRequestVolunteer1
     )
+    response(
+      act = ConfirmAction {
+        actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE2 {
+        date = USetRequestVolunteer1Request.date,
+        service = USetRequestVolunteer1Request.service
+      },
+      response = MultiModalResponse {
+        apla = response0Prompt0
+      }
+    )
+    expect(
+      act = Affirm,
+      event = USetAffirm
+    )
     ensure(
       requestArgs = [
         RequestArguments {
@@ -129,7 +148,7 @@ dialog Nothing dialogName_RequestVolunteer1() {
         }
       ]
     )
-    APIRequestVolunteer(
+    volunteerRequest0 = APIRequestVolunteer(
       date = USetRequestVolunteer1Request.date,
       service = USetRequestVolunteer1Request.service
     )
@@ -137,6 +156,9 @@ dialog Nothing dialogName_RequestVolunteer1() {
       act = Notify {
         success = true,
         actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE3 {
+        volunteerRequest = volunteerRequest0
       },
       response = MultiModalResponse {
         apla = requestConfirmedPrompt
@@ -183,7 +205,7 @@ dialog Nothing dialogName_RequestVolunteer0() {
       act = ConfirmAction {
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE2 {
+      payload = PAYLOAD_TYPE4 {
         date = USetInformDateRequest.date,
         service = USetInformServiceRequest.service
       },
@@ -195,7 +217,7 @@ dialog Nothing dialogName_RequestVolunteer0() {
       act = Affirm,
       event = USetAffirm
     )
-    APIRequestVolunteer(
+    volunteerRequest0 = APIRequestVolunteer(
       date = USetInformDateRequest.date,
       service = USetInformServiceRequest.service
     )
@@ -203,6 +225,9 @@ dialog Nothing dialogName_RequestVolunteer0() {
       act = Notify {
         success = true,
         actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE5 {
+        volunteerRequest = volunteerRequest0
       },
       response = MultiModalResponse {
         apla = requestConfirmedPrompt
