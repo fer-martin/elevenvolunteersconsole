@@ -28,23 +28,12 @@
           "samples": []
         },
         {
-          "name": "SetFavoriteColorIntent",
-          "slots": [
-            {
-              "name": "color",
-              "type": "AMAZON.Color"
-            }
-          ],
-          "samples": [
-            "I love {color}",
-            "my favorite color is {color}"
-          ]
-        },
-        {
-          "name": "GetFavoriteColorIntent",
+          "name": "GetRequestedServices",
           "slots": [],
           "samples": [
-            "what is my favorite color"
+            "did i request a volunteer",
+            "tell me my volunteers",
+            "what volunteers did i request"
           ]
         }
       ],
@@ -170,5 +159,5 @@
       }
     }
   },
-  "version": "4"
+  "version": "6"
 }

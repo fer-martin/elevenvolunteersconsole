@@ -1,7 +1,6 @@
 namespace dialogs
 
 import apis.APIRequestVolunteer
-import apis.RecordColor
 import com.amazon.alexa.ask.conversations.Affirm
 import com.amazon.alexa.ask.conversations.ConfirmAction
 import com.amazon.alexa.ask.conversations.Inform
@@ -14,93 +13,19 @@ import com.amazon.alexa.ask.conversations.ensure
 import com.amazon.alexa.ask.conversations.expect
 import com.amazon.alexa.ask.conversations.response
 import com.amazon.alexa.schema.Nothing
-import displays.GetFavoriteColorView
-import displays.RecordColorSuccessView
-import displays.RequestFavoriteColorView
-import prompts.GetFavoriteColorSuccessPrompt
-import prompts.RecordColorSuccessPrompt
-import prompts.RequestFavoriteColorPrompt
-import prompts.requestConfirmedPrompt
-import prompts.requestDatePrompt
-import prompts.requestServicePrompt
-import prompts.response0Prompt0
+import prompts.ConfirmRequestPrompt
+import prompts.RequestConfirmedPrompt
+import prompts.RequestDatePrompt
+import prompts.RequestServicePrompt
 import types.PAYLOAD_TYPE0
 import types.PAYLOAD_TYPE1
 import types.PAYLOAD_TYPE2
 import types.PAYLOAD_TYPE3
-import types.PAYLOAD_TYPE4
-import types.PAYLOAD_TYPE5
-import utterances.GetFavoriteColor
-import utterances.RecordFavoriteColor
-import utterances.SpecifyFavoriteColor
 import utterances.USetAffirm
 import utterances.USetInformDate
 import utterances.USetInformService
 import utterances.USetRequestVolunteer0
 import utterances.USetRequestVolunteer1
-
-dialog Nothing dialogName_GetFavoriteColor() {
-  sample {
-    expect(
-      act = Invoke,
-      event = GetFavoriteColor
-    )
-    favoriteColor0 = apis.GetFavoriteColor()
-    response(
-      act = Notify {
-        success = true,
-        actionName = apis.GetFavoriteColor
-      },
-      payload = PAYLOAD_TYPE0 {
-        favoriteColor = favoriteColor0
-      },
-      response = MultiModalResponse {
-        apla = GetFavoriteColorSuccessPrompt,
-        apl = GetFavoriteColorView
-      }
-    )
-  }
-}
-
-dialog Nothing dialogName_RecordFavoriteColor() {
-  sample {
-    expect(
-      act = Invoke,
-      event = RecordFavoriteColor
-    )
-    response(
-      act = Request {
-        arguments = [
-          RecordColor.arguments.color
-        ]
-      },
-      response = MultiModalResponse {
-        apla = RequestFavoriteColorPrompt,
-        apl = RequestFavoriteColorView
-      }
-    )
-    SpecifyFavoriteColorRequest = expect(
-      act = Inform,
-      event = SpecifyFavoriteColor
-    )
-    favoriteColor0 = RecordColor(
-      color = SpecifyFavoriteColorRequest.color
-    )
-    response(
-      act = Notify {
-        success = true,
-        actionName = RecordColor
-      },
-      payload = PAYLOAD_TYPE1 {
-        favoriteColor = favoriteColor0
-      },
-      response = MultiModalResponse {
-        apla = RecordColorSuccessPrompt,
-        apl = RecordColorSuccessView
-      }
-    )
-  }
-}
 
 dialog Nothing dialogName_RequestVolunteer1() {
   sample {
@@ -112,12 +37,12 @@ dialog Nothing dialogName_RequestVolunteer1() {
       act = ConfirmAction {
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE2 {
+      payload = PAYLOAD_TYPE0 {
         date = USetRequestVolunteer1Request.date,
         service = USetRequestVolunteer1Request.service
       },
       response = MultiModalResponse {
-        apla = response0Prompt0
+        apla = ConfirmRequestPrompt
       }
     )
     expect(
@@ -128,7 +53,7 @@ dialog Nothing dialogName_RequestVolunteer1() {
       requestArgs = [
         RequestArguments {
           response = MultiModalResponse {
-            apla = requestServicePrompt
+            apla = RequestServicePrompt
           },
           arguments = [
             APIRequestVolunteer.arguments.service
@@ -140,7 +65,7 @@ dialog Nothing dialogName_RequestVolunteer1() {
       requestArgs = [
         RequestArguments {
           response = MultiModalResponse {
-            apla = requestDatePrompt
+            apla = RequestDatePrompt
           },
           arguments = [
             APIRequestVolunteer.arguments.date
@@ -157,11 +82,11 @@ dialog Nothing dialogName_RequestVolunteer1() {
         success = true,
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE3 {
+      payload = PAYLOAD_TYPE1 {
         volunteerRequest = volunteerRequest0
       },
       response = MultiModalResponse {
-        apla = requestConfirmedPrompt
+        apla = RequestConfirmedPrompt
       }
     )
   }
@@ -180,7 +105,7 @@ dialog Nothing dialogName_RequestVolunteer0() {
         ]
       },
       response = MultiModalResponse {
-        apla = requestServicePrompt
+        apla = RequestServicePrompt
       }
     )
     USetInformServiceRequest = expect(
@@ -194,7 +119,7 @@ dialog Nothing dialogName_RequestVolunteer0() {
         ]
       },
       response = MultiModalResponse {
-        apla = requestDatePrompt
+        apla = RequestDatePrompt
       }
     )
     USetInformDateRequest = expect(
@@ -205,12 +130,12 @@ dialog Nothing dialogName_RequestVolunteer0() {
       act = ConfirmAction {
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE4 {
+      payload = PAYLOAD_TYPE2 {
         date = USetInformDateRequest.date,
         service = USetInformServiceRequest.service
       },
       response = MultiModalResponse {
-        apla = response0Prompt0
+        apla = ConfirmRequestPrompt
       }
     )
     expect(
@@ -226,11 +151,11 @@ dialog Nothing dialogName_RequestVolunteer0() {
         success = true,
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE5 {
+      payload = PAYLOAD_TYPE3 {
         volunteerRequest = volunteerRequest0
       },
       response = MultiModalResponse {
-        apla = requestConfirmedPrompt
+        apla = RequestConfirmedPrompt
       }
     )
   }

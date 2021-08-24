@@ -1,15 +1,9 @@
 namespace apis
 
-import com.amazon.ask.types.builtins.AMAZON.Color
 import com.amazon.ask.types.builtins.AMAZON.DATE
 import com.amazon.ask.types.builtins.AMAZON.DURATION
 import com.amazon.ask.types.builtins.AMAZON.TIME
 import slotTypes.service
-import types.FavoriteColor
 import types.VolunteerRequest
-
-action FavoriteColor RecordColor(Color color)
-
-action FavoriteColor GetFavoriteColor()
 
 action VolunteerRequest APIRequestVolunteer(DATE date, service service, TIME time = nothing, DURATION duration = nothing)
