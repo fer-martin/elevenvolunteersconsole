@@ -1,6 +1,8 @@
 namespace types
 
 import com.amazon.ask.types.builtins.AMAZON.Color
+import com.amazon.ask.types.builtins.AMAZON.DATE
+import slotTypes.service
 
 type PAYLOAD_TYPE0 {
   FavoriteColor favoriteColor
@@ -8,6 +10,29 @@ type PAYLOAD_TYPE0 {
 
 type PAYLOAD_TYPE1 {
   FavoriteColor favoriteColor
+}
+
+type USetRequestVolunteer1RequestType {
+  DATE date
+  service service
+}
+
+type PAYLOAD_TYPE2 {
+  DATE date
+  service service
+}
+
+type VolunteerRequest {
+  DATE date
+  service service
+}
+
+type USetInformServiceRequestType {
+  service service
+}
+
+type USetInformDateRequestType {
+  DATE date
 }
 
 type FavoriteColor {

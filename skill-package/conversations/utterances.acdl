@@ -2,6 +2,51 @@ namespace utterances
 
 import com.amazon.alexa.ask.conversations.utterances
 import types.SpecifyFavoriteColorRequestType
+import types.USetInformDateRequestType
+import types.USetInformServiceRequestType
+import types.USetRequestVolunteer1RequestType
+
+USetAffirm = utterances(
+  samples = [
+    "let's do it",
+    "ok",
+    "yes"
+  ]
+)
+
+USetInformDate = utterances<USetInformDateRequestType>(
+  samples = [
+    "for {date}",
+    "{date}"
+  ]
+)
+
+USetRequestVolunteer0 = utterances(
+  samples = [
+    "I need help with something",
+    "A volunteer, please",
+    "Please send me a volunteer",
+    "I need a volunteer",
+    "I want a volunteer"
+  ]
+)
+
+USetInformService = utterances<USetInformServiceRequestType>(
+  samples = [
+    "to {service}",
+    "for {service}",
+    "{service}"
+  ]
+)
+
+USetRequestVolunteer1 = utterances<USetRequestVolunteer1RequestType>(
+  samples = [
+    "I want to request a volunteer for {service} for {date}",
+    "Send me a volunteer for {service} for {date}",
+    "I need a volunteer for {service} for {date}",
+    "I want a volunteer for {service} for {date}"
+  ]
+)
 
 RecordFavoriteColor = utterances(
   samples = [

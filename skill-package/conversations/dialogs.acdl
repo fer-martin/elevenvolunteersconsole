@@ -1,11 +1,16 @@
 namespace dialogs
 
+import apis.APIRequestVolunteer
 import apis.RecordColor
+import com.amazon.alexa.ask.conversations.Affirm
+import com.amazon.alexa.ask.conversations.ConfirmAction
 import com.amazon.alexa.ask.conversations.Inform
 import com.amazon.alexa.ask.conversations.Invoke
 import com.amazon.alexa.ask.conversations.MultiModalResponse
 import com.amazon.alexa.ask.conversations.Notify
 import com.amazon.alexa.ask.conversations.Request
+import com.amazon.alexa.ask.conversations.RequestArguments
+import com.amazon.alexa.ask.conversations.ensure
 import com.amazon.alexa.ask.conversations.expect
 import com.amazon.alexa.ask.conversations.response
 import com.amazon.alexa.schema.Nothing
@@ -15,11 +20,21 @@ import displays.RequestFavoriteColorView
 import prompts.GetFavoriteColorSuccessPrompt
 import prompts.RecordColorSuccessPrompt
 import prompts.RequestFavoriteColorPrompt
+import prompts.requestConfirmedPrompt
+import prompts.requestDatePrompt
+import prompts.requestServicePrompt
+import prompts.response0Prompt0
 import types.PAYLOAD_TYPE0
 import types.PAYLOAD_TYPE1
+import types.PAYLOAD_TYPE2
 import utterances.GetFavoriteColor
 import utterances.RecordFavoriteColor
 import utterances.SpecifyFavoriteColor
+import utterances.USetAffirm
+import utterances.USetInformDate
+import utterances.USetInformService
+import utterances.USetRequestVolunteer0
+import utterances.USetRequestVolunteer1
 
 dialog Nothing dialogName_GetFavoriteColor() {
   sample {
@@ -79,6 +94,118 @@ dialog Nothing dialogName_RecordFavoriteColor() {
       response = MultiModalResponse {
         apla = RecordColorSuccessPrompt,
         apl = RecordColorSuccessView
+      }
+    )
+  }
+}
+
+dialog Nothing dialogName_RequestVolunteer1() {
+  sample {
+    USetRequestVolunteer1Request = expect(
+      act = Invoke,
+      event = USetRequestVolunteer1
+    )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = requestServicePrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.service
+          ]
+        }
+      ]
+    )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = requestDatePrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.date
+          ]
+        }
+      ]
+    )
+    APIRequestVolunteer(
+      date = USetRequestVolunteer1Request.date,
+      service = USetRequestVolunteer1Request.service
+    )
+    response(
+      act = Notify {
+        success = true,
+        actionName = APIRequestVolunteer
+      },
+      response = MultiModalResponse {
+        apla = requestConfirmedPrompt
+      }
+    )
+  }
+}
+
+dialog Nothing dialogName_RequestVolunteer0() {
+  sample {
+    expect(
+      act = Invoke,
+      event = USetRequestVolunteer0
+    )
+    response(
+      act = Request {
+        arguments = [
+          APIRequestVolunteer.arguments.service
+        ]
+      },
+      response = MultiModalResponse {
+        apla = requestServicePrompt
+      }
+    )
+    USetInformServiceRequest = expect(
+      act = Inform,
+      event = USetInformService
+    )
+    response(
+      act = Request {
+        arguments = [
+          APIRequestVolunteer.arguments.date
+        ]
+      },
+      response = MultiModalResponse {
+        apla = requestDatePrompt
+      }
+    )
+    USetInformDateRequest = expect(
+      act = Inform,
+      event = USetInformDate
+    )
+    response(
+      act = ConfirmAction {
+        actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE2 {
+        date = USetInformDateRequest.date,
+        service = USetInformServiceRequest.service
+      },
+      response = MultiModalResponse {
+        apla = response0Prompt0
+      }
+    )
+    expect(
+      act = Affirm,
+      event = USetAffirm
+    )
+    APIRequestVolunteer(
+      date = USetInformDateRequest.date,
+      service = USetInformServiceRequest.service
+    )
+    response(
+      act = Notify {
+        success = true,
+        actionName = APIRequestVolunteer
+      },
+      response = MultiModalResponse {
+        apla = requestConfirmedPrompt
       }
     )
   }
