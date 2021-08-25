@@ -6,6 +6,21 @@ import com.amazon.ask.types.builtins.AMAZON.NUMBER
 import com.amazon.ask.types.builtins.AMAZON.TIME
 import slotTypes.service
 
+type USetInformTimeRequestType {
+  TIME time
+}
+
+type USetInformServiceRequestType {
+  service service
+}
+
+type USetVolunteer2RequestType {
+  DATE date
+  DURATION duration
+  service service
+  TIME time
+}
+
 type USetInformDurationRequestType {
   DURATION duration
 }
@@ -46,18 +61,21 @@ type USetInformTimeAndDurationRequestType {
   TIME time
 }
 
-type USetInformTimeRequestType {
-  TIME time
-}
-
-type USetInformServiceRequestType {
-  service service
-}
-
 type USetInformDateRequestType {
   DATE date
 }
 
 type PAYLOAD_TYPE3 {
+  VolunteerRequest volunteerRequest
+}
+
+type PAYLOAD_TYPE4 {
+  DATE date
+  DURATION duration
+  service service
+  TIME time
+}
+
+type PAYLOAD_TYPE5 {
   VolunteerRequest volunteerRequest
 }

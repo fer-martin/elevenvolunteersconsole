@@ -23,6 +23,8 @@ import types.PAYLOAD_TYPE0
 import types.PAYLOAD_TYPE1
 import types.PAYLOAD_TYPE2
 import types.PAYLOAD_TYPE3
+import types.PAYLOAD_TYPE4
+import types.PAYLOAD_TYPE5
 import utterances.USetAffirm
 import utterances.USetInformDate
 import utterances.USetInformDuration
@@ -31,6 +33,100 @@ import utterances.USetInformTime
 import utterances.USetInformTimeAndDuration
 import utterances.USetRequestVolunteer0
 import utterances.USetRequestVolunteer1
+import utterances.USetVolunteer2
+
+dialog Nothing dialogName_RequestVolunteer2() {
+  sample {
+    USetVolunteer2Request = expect(
+      act = Invoke,
+      event = USetVolunteer2
+    )
+    response(
+      act = ConfirmAction {
+        actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE0 {
+        date = USetVolunteer2Request.date,
+        duration = USetVolunteer2Request.duration,
+        service = USetVolunteer2Request.service,
+        time = USetVolunteer2Request.time
+      },
+      response = MultiModalResponse {
+        apla = ConfirmRequestPrompt
+      }
+    )
+    expect(
+      act = Affirm,
+      event = USetAffirm
+    )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = RequestServicePrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.service
+          ]
+        }
+      ]
+    )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = RequestDatePrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.date
+          ]
+        }
+      ]
+    )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = RequestTimePrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.time
+          ]
+        }
+      ]
+    )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = RequestDurationPrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.duration
+          ]
+        }
+      ]
+    )
+    volunteerRequest0 = APIRequestVolunteer(
+      date = USetVolunteer2Request.date,
+      duration = USetVolunteer2Request.duration,
+      service = USetVolunteer2Request.service,
+      time = USetVolunteer2Request.time
+    )
+    response(
+      act = Notify {
+        success = true,
+        actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE1 {
+        volunteerRequest = volunteerRequest0
+      },
+      response = MultiModalResponse {
+        apla = RequestConfirmedPrompt
+      }
+    )
+  }
+}
 
 dialog Nothing dialogName_RequestVolunteer1() {
   sample {
@@ -70,7 +166,7 @@ dialog Nothing dialogName_RequestVolunteer1() {
       act = ConfirmAction {
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE0 {
+      payload = PAYLOAD_TYPE2 {
         date = USetRequestVolunteer1Request.date,
         duration = USetInformDurationRequest.duration,
         service = USetRequestVolunteer1Request.service,
@@ -119,7 +215,7 @@ dialog Nothing dialogName_RequestVolunteer1() {
         success = true,
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE1 {
+      payload = PAYLOAD_TYPE3 {
         volunteerRequest = volunteerRequest0
       },
       response = MultiModalResponse {
@@ -206,7 +302,7 @@ dialog Nothing dialogName_RequestVolunteer0() {
       act = ConfirmAction {
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE2 {
+      payload = PAYLOAD_TYPE4 {
         date = USetInformDateRequest.date,
         duration = USetInformTimeAndDurationRequest.duration,
         service = USetInformServiceRequest.service,
@@ -231,7 +327,7 @@ dialog Nothing dialogName_RequestVolunteer0() {
         success = true,
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE3 {
+      payload = PAYLOAD_TYPE5 {
         volunteerRequest = volunteerRequest0
       },
       response = MultiModalResponse {

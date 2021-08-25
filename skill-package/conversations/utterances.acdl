@@ -7,6 +7,15 @@ import types.USetInformServiceRequestType
 import types.USetInformTimeAndDurationRequestType
 import types.USetInformTimeRequestType
 import types.USetRequestVolunteer1RequestType
+import types.USetVolunteer2RequestType
+
+USetVolunteer2 = utterances<USetVolunteer2RequestType>(
+  samples = [
+    "get me a volunteer {date} at {time} for {service} for {duration}",
+    "find a volunteer for {service} , on {date} at {time} for {duration}",
+    "I need a volunteer for {service} , {date} at {time} for {duration}"
+  ]
+)
 
 USetInformTimeAndDuration = utterances<USetInformTimeAndDurationRequestType>(
   samples = [
