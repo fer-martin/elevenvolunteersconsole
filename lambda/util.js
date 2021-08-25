@@ -51,3 +51,57 @@ module.exports.getApiSlots = (handlerInput) => {
         return false;
     }
 }
+
+module.exports.getAPISlotValues = function (handlerInput) {
+    const filledSlots = handlerInput.requestEnvelope.request.apiRequest.slots
+    const slotValues = {};
+
+    Object.keys(filledSlots).forEach((item) => {
+        const name = item;
+
+        if (filledSlots[item] &&
+            filledSlots[item].resolutions &&
+            filledSlots[item].resolutions.resolutionsPerAuthority[0] &&
+            filledSlots[item].resolutions.resolutionsPerAuthority[0].status &&
+            filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code) {
+            switch (filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code) {
+                case 'ER_SUCCESS_MATCH':
+                    slotValues[name] = {
+                        id: filledSlots[item].resolutions.resolutionsPerAuthority[0].values[0].value.id,
+                        heardAs: filledSlots[item].value,
+                        resolved: filledSlots[item].resolutions.resolutionsPerAuthority[0].values[0].value.name,
+                        confirmationStatus: filledSlots[item].confirmationStatus,
+                        ERstatus: 'ER_SUCCESS_MATCH'
+                    };
+                    break;
+                case 'ER_SUCCESS_NO_MATCH':
+                    slotValues[name] = {
+                        id: "UNKNOWN",
+                        heardAs: filledSlots[item].value,
+                        resolved: '',
+                        confirmationStatus: filledSlots[item].confirmationStatus,
+                        ERstatus: 'ER_SUCCESS_NO_MATCH'
+                    };
+                    break;
+                default:
+                    slotValues[name] = {
+                        id: null,
+                        heardAs: filledSlots[item].value,
+                        resolved: '',
+                        confirmationStatus: filledSlots[item].confirmationStatus,
+                        ERstatus: ''
+                    };
+                    break;
+            }
+        } else {
+            slotValues[name] = {
+                id: null,
+                heardAs: filledSlots[item].value,
+                resolved: filledSlots[item].value,
+                confirmationStatus: filledSlots[item].confirmationStatus,
+                ERstatus: ''
+            };
+        }
+    }, this);
+    return slotValues;
+}
