@@ -13,7 +13,13 @@
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "content": "Ok I will ask for a volunteer for ${payload.service} for ${payload.date}, at ${payload.time} for ${payload.duration}. Is that ok?",
+                    "content": "at what time?",
+                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "at what time do you need it?",
                     "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
                 }
             ]

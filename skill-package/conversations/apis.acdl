@@ -6,4 +6,4 @@ import com.amazon.ask.types.builtins.AMAZON.TIME
 import slotTypes.service
 import types.VolunteerRequest
 
-action VolunteerRequest APIRequestVolunteer(DATE date, service service, TIME time = nothing, DURATION duration = nothing)
+action VolunteerRequest APIRequestVolunteer(DURATION duration, TIME time, DATE date, service service)

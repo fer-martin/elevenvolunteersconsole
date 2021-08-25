@@ -2,8 +2,32 @@ namespace utterances
 
 import com.amazon.alexa.ask.conversations.utterances
 import types.USetInformDateRequestType
+import types.USetInformDurationRequestType
 import types.USetInformServiceRequestType
+import types.USetInformTimeAndDurationRequestType
+import types.USetInformTimeRequestType
 import types.USetRequestVolunteer1RequestType
+
+USetInformTimeAndDuration = utterances<USetInformTimeAndDurationRequestType>(
+  samples = [
+    "for {duration} at {time}",
+    "at {time} for {duration}"
+  ]
+)
+
+USetInformDuration = utterances<USetInformDurationRequestType>(
+  samples = [
+    "{duration}",
+    "for {duration}"
+  ]
+)
+
+USetInformTime = utterances<USetInformTimeRequestType>(
+  samples = [
+    "{time}",
+    "at {time}"
+  ]
+)
 
 USetAffirm = utterances(
   samples = [

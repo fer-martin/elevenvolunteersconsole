@@ -35,11 +35,14 @@ const RequestVolunteerApiHandler = {
         const slots = util.getAPISlotValues(handlerInput);
         const service = slots["service"].id;
         const date = slots["date"].resolved;
-
+        const time = slots["time"].resolved;
+        const duration = slots["duration"].resolved;
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.VolunteerRequest = {
             service: service,
             date: date,
+            time: time,
+            duration: duration,
             status: 0
         };
 

@@ -1,12 +1,20 @@
 namespace types
 
 import com.amazon.ask.types.builtins.AMAZON.DATE
+import com.amazon.ask.types.builtins.AMAZON.DURATION
 import com.amazon.ask.types.builtins.AMAZON.NUMBER
+import com.amazon.ask.types.builtins.AMAZON.TIME
 import slotTypes.service
+
+type USetInformDurationRequestType {
+  DURATION duration
+}
 
 type PAYLOAD_TYPE0 {
   DATE date
+  DURATION duration
   service service
+  TIME time
 }
 
 type PAYLOAD_TYPE1 {
@@ -20,13 +28,26 @@ type USetRequestVolunteer1RequestType {
 
 type PAYLOAD_TYPE2 {
   DATE date
+  DURATION duration
   service service
+  TIME time
 }
 
 type VolunteerRequest {
   DATE date
+  DURATION duration
   service service
+  TIME time
   NUMBER status
+}
+
+type USetInformTimeAndDurationRequestType {
+  DURATION duration
+  TIME time
+}
+
+type USetInformTimeRequestType {
+  TIME time
 }
 
 type USetInformServiceRequestType {
