@@ -44,7 +44,7 @@
          };
  
          return handlerInput.responseBuilder
-             .withApiResponse(VolunteerRequest)
+             .withApiResponse(sessionAttributes.VolunteerRequest)
              .withShouldEndSession(false)
              .getResponse();
      }
