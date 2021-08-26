@@ -25,6 +25,8 @@ import types.PAYLOAD_TYPE2
 import types.PAYLOAD_TYPE3
 import types.PAYLOAD_TYPE4
 import types.PAYLOAD_TYPE5
+import types.PAYLOAD_TYPE6
+import types.PAYLOAD_TYPE7
 import utterances.USetAffirm
 import utterances.USetInformDate
 import utterances.USetInformDuration
@@ -33,23 +35,24 @@ import utterances.USetInformTime
 import utterances.USetInformTimeAndDuration
 import utterances.USetRequestVolunteer0
 import utterances.USetRequestVolunteer1
-import utterances.USetVolunteer2
+import utterances.USetRequestVolunteer2
+import utterances.USetRequestVolunteer3
 
 dialog Nothing dialogName_RequestVolunteer2() {
   sample {
-    USetVolunteer2Request = expect(
+    USetRequestVolunteer2Request = expect(
       act = Invoke,
-      event = USetVolunteer2
+      event = USetRequestVolunteer2
     )
     response(
       act = ConfirmAction {
         actionName = APIRequestVolunteer
       },
       payload = PAYLOAD_TYPE0 {
-        date = USetVolunteer2Request.date,
-        duration = USetVolunteer2Request.duration,
-        service = USetVolunteer2Request.service,
-        time = USetVolunteer2Request.time
+        date = USetRequestVolunteer2Request.date,
+        duration = USetRequestVolunteer2Request.duration,
+        service = USetRequestVolunteer2Request.service,
+        time = USetRequestVolunteer2Request.time
       },
       response = MultiModalResponse {
         apla = ConfirmRequestPrompt
@@ -108,10 +111,10 @@ dialog Nothing dialogName_RequestVolunteer2() {
       ]
     )
     volunteerRequest0 = APIRequestVolunteer(
-      date = USetVolunteer2Request.date,
-      duration = USetVolunteer2Request.duration,
-      service = USetVolunteer2Request.service,
-      time = USetVolunteer2Request.time
+      date = USetRequestVolunteer2Request.date,
+      duration = USetRequestVolunteer2Request.duration,
+      service = USetRequestVolunteer2Request.service,
+      time = USetRequestVolunteer2Request.time
     )
     response(
       act = Notify {
@@ -144,23 +147,9 @@ dialog Nothing dialogName_RequestVolunteer1() {
         apla = RequestTimePrompt
       }
     )
-    USetInformTimeRequest = expect(
+    USetInformTimeAndDurationRequest = expect(
       act = Inform,
-      event = USetInformTime
-    )
-    response(
-      act = Request {
-        arguments = [
-          APIRequestVolunteer.arguments.duration
-        ]
-      },
-      response = MultiModalResponse {
-        apla = RequestDurationPrompt
-      }
-    )
-    USetInformDurationRequest = expect(
-      act = Inform,
-      event = USetInformDuration
+      event = USetInformTimeAndDuration
     )
     response(
       act = ConfirmAction {
@@ -168,9 +157,9 @@ dialog Nothing dialogName_RequestVolunteer1() {
       },
       payload = PAYLOAD_TYPE2 {
         date = USetRequestVolunteer1Request.date,
-        duration = USetInformDurationRequest.duration,
+        duration = USetInformTimeAndDurationRequest.duration,
         service = USetRequestVolunteer1Request.service,
-        time = USetInformTimeRequest.time
+        time = USetInformTimeAndDurationRequest.time
       },
       response = MultiModalResponse {
         apla = ConfirmRequestPrompt
@@ -204,11 +193,23 @@ dialog Nothing dialogName_RequestVolunteer1() {
         }
       ]
     )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = RequestDurationPrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.duration
+          ]
+        }
+      ]
+    )
     volunteerRequest0 = APIRequestVolunteer(
       date = USetRequestVolunteer1Request.date,
-      duration = USetInformDurationRequest.duration,
+      duration = USetInformTimeAndDurationRequest.duration,
       service = USetRequestVolunteer1Request.service,
-      time = USetInformTimeRequest.time
+      time = USetInformTimeAndDurationRequest.time
     )
     response(
       act = Notify {
@@ -262,13 +263,131 @@ dialog Nothing dialogName_RequestVolunteer0() {
     response(
       act = Request {
         arguments = [
-          APIRequestVolunteer.arguments.duration,
           APIRequestVolunteer.arguments.time
         ]
       },
       response = MultiModalResponse {
         apla = RequestTimePrompt
       }
+    )
+    USetInformTimeRequest = expect(
+      act = Inform,
+      event = USetInformTime
+    )
+    response(
+      act = Request {
+        arguments = [
+          APIRequestVolunteer.arguments.duration
+        ]
+      },
+      response = MultiModalResponse {
+        apla = RequestDurationPrompt
+      }
+    )
+    USetInformDurationRequest = expect(
+      act = Inform,
+      event = USetInformDuration
+    )
+    response(
+      act = ConfirmAction {
+        actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE4 {
+        date = USetInformDateRequest.date,
+        duration = USetInformDurationRequest.duration,
+        service = USetInformServiceRequest.service,
+        time = USetInformTimeRequest.time
+      },
+      response = MultiModalResponse {
+        apla = ConfirmRequestPrompt
+      }
+    )
+    expect(
+      act = Affirm,
+      event = USetAffirm
+    )
+    volunteerRequest0 = APIRequestVolunteer(
+      date = USetInformDateRequest.date,
+      duration = USetInformDurationRequest.duration,
+      service = USetInformServiceRequest.service,
+      time = USetInformTimeRequest.time
+    )
+    response(
+      act = Notify {
+        success = true,
+        actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE5 {
+        volunteerRequest = volunteerRequest0
+      },
+      response = MultiModalResponse {
+        apla = RequestConfirmedPrompt
+      }
+    )
+  }
+}
+
+dialog Nothing dialogName_RequestVolunteer3() {
+  sample {
+    USetRequestVolunteer3Request = expect(
+      act = Invoke,
+      event = USetRequestVolunteer3
+    )
+    response(
+      act = Request {
+        arguments = [
+          APIRequestVolunteer.arguments.duration
+        ]
+      },
+      response = MultiModalResponse {
+        apla = RequestDurationPrompt
+      }
+    )
+    USetInformDurationRequest = expect(
+      act = Inform,
+      event = USetInformDuration
+    )
+    response(
+      act = ConfirmAction {
+        actionName = APIRequestVolunteer
+      },
+      payload = PAYLOAD_TYPE6 {
+        date = USetRequestVolunteer3Request.date,
+        duration = USetInformDurationRequest.duration,
+        service = USetRequestVolunteer3Request.service,
+        time = USetRequestVolunteer3Request.time
+      },
+      response = MultiModalResponse {
+        apla = ConfirmRequestPrompt
+      }
+    )
+    expect(
+      act = Affirm,
+      event = USetAffirm
+    )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = RequestServicePrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.service
+          ]
+        }
+      ]
+    )
+    ensure(
+      requestArgs = [
+        RequestArguments {
+          response = MultiModalResponse {
+            apla = RequestDatePrompt
+          },
+          arguments = [
+            APIRequestVolunteer.arguments.date
+          ]
+        }
+      ]
     )
     ensure(
       requestArgs = [
@@ -282,52 +401,18 @@ dialog Nothing dialogName_RequestVolunteer0() {
         }
       ]
     )
-    ensure(
-      requestArgs = [
-        RequestArguments {
-          response = MultiModalResponse {
-            apla = RequestDurationPrompt
-          },
-          arguments = [
-            APIRequestVolunteer.arguments.duration
-          ]
-        }
-      ]
-    )
-    USetInformTimeAndDurationRequest = expect(
-      act = Inform,
-      event = USetInformTimeAndDuration
-    )
-    response(
-      act = ConfirmAction {
-        actionName = APIRequestVolunteer
-      },
-      payload = PAYLOAD_TYPE4 {
-        date = USetInformDateRequest.date,
-        duration = USetInformTimeAndDurationRequest.duration,
-        service = USetInformServiceRequest.service,
-        time = USetInformTimeAndDurationRequest.time
-      },
-      response = MultiModalResponse {
-        apla = ConfirmRequestPrompt
-      }
-    )
-    expect(
-      act = Affirm,
-      event = USetAffirm
-    )
     volunteerRequest0 = APIRequestVolunteer(
-      date = USetInformDateRequest.date,
-      duration = USetInformTimeAndDurationRequest.duration,
-      service = USetInformServiceRequest.service,
-      time = USetInformTimeAndDurationRequest.time
+      date = USetRequestVolunteer3Request.date,
+      duration = USetInformDurationRequest.duration,
+      service = USetRequestVolunteer3Request.service,
+      time = USetRequestVolunteer3Request.time
     )
     response(
       act = Notify {
         success = true,
         actionName = APIRequestVolunteer
       },
-      payload = PAYLOAD_TYPE5 {
+      payload = PAYLOAD_TYPE7 {
         volunteerRequest = volunteerRequest0
       },
       response = MultiModalResponse {

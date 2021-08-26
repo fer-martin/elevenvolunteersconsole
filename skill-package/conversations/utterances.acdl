@@ -7,9 +7,21 @@ import types.USetInformServiceRequestType
 import types.USetInformTimeAndDurationRequestType
 import types.USetInformTimeRequestType
 import types.USetRequestVolunteer1RequestType
-import types.USetVolunteer2RequestType
+import types.USetRequestVolunteer2RequestType
+import types.USetRequestVolunteer3RequestType
 
-USetVolunteer2 = utterances<USetVolunteer2RequestType>(
+USetRequestVolunteer3 = utterances<USetRequestVolunteer3RequestType>(
+  samples = [
+    "get me a volunteer for {service} for {date} at {time}",
+    "find a volunteer for {service} for {date} at {time}",
+    "I want a volunteer for {service} at {time} {date}",
+    "I want a volunteer for {service} at {time} on {date}",
+    "i need a volunteer for {service} for {date} at {time}",
+    "I want to request a volunteer for {service} for {date} at {time}"
+  ]
+)
+
+USetRequestVolunteer2 = utterances<USetRequestVolunteer2RequestType>(
   samples = [
     "get me a volunteer {date} at {time} for {service} for {duration}",
     "find a volunteer for {service} , on {date} at {time} for {duration}",
@@ -73,9 +85,35 @@ USetInformService = utterances<USetInformServiceRequestType>(
 
 USetRequestVolunteer1 = utterances<USetRequestVolunteer1RequestType>(
   samples = [
-    "I want to request a volunteer for {service} for {date}",
-    "Send me a volunteer for {service} for {date}",
-    "I need a volunteer for {service} for {date}",
-    "I want a volunteer for {service} for {date}"
+    "i want  a volunteer for {service} on {date}",
+    "i want  a volunteer for {service} for {date}",
+    "i want to request a volunteer for {service} on {date}",
+    "i want to request a volunteer for {service} for {date}",
+    "i need  a volunteer for {service} on {date}",
+    "i need  a volunteer for {service} for {date}",
+    "i need to request a volunteer for {service} on {date}",
+    "i need to request a volunteer for {service} for {date}",
+    "find me a volunteer for {service} on {date}",
+    "find me a volunteer for {service} for {date}",
+    "find a volunteer for {service} on {date}",
+    "find a volunteer for {service} for {date}",
+    "i want  a volunteer  {date} for {service}",
+    "i want  a volunteer on {date} for {service}",
+    "i want  a volunteer for {date} for {service}",
+    "i want to request a volunteer  {date} for {service}",
+    "i want to request a volunteer on {date} for {service}",
+    "i want to request a volunteer for {date} for {service}",
+    "i need  a volunteer  {date} for {service}",
+    "i need  a volunteer on {date} for {service}",
+    "i need  a volunteer for {date} for {service}",
+    "i need to request a volunteer  {date} for {service}",
+    "i need to request a volunteer on {date} for {service}",
+    "i need to request a volunteer for {date} for {service}",
+    "find me a volunteer  {date} for {service}",
+    "find me a volunteer on {date} for {service}",
+    "find me a volunteer for {date} for {service}",
+    "find a volunteer  {date} for {service}",
+    "find a volunteer on {date} for {service}",
+    "find a volunteer for {date} for {service}"
   ]
 )
