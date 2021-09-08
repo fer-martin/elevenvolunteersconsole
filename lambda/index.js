@@ -192,6 +192,8 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addResponseInterceptors(LogResponseInterceptor)
     .addRequestHandlers(
         RequestVolunteerApiHandler,
+        CheckParamsApiHandler,
+        CheckParamsApiRecurringHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler
     )
