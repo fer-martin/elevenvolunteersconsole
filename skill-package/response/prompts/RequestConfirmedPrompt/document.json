@@ -5,13 +5,14 @@
         "parameters": [
             "payload"
         ],
-        "item": {
+        "items": {
             "type": "Sequencer",
             "items": [
                 {
                     "type": "Selector",
                     "strategy": "randomItem",
                     "description": "Change 'type' above to try different Selector Component Types like Sequencer",
+                    "when": "${payload.statusResponse.status == 0}",
                     "items": [
                         {
                             "type": "Speech",
@@ -35,15 +36,9 @@
                 },
                 {
                     "type": "Speech",
+                    "when": "${payload.statusResponse.status != 0}",
                     "contentType": "text",
-                    "content": " ${payload.statusResponse.message}",
-                    "description": "si le pongo la variable sola, da error 'something went wrong'"
-                },
-                {
-                    "type": "Speech",
-                    "contentType": "text",
-                    "content": "Thank you.",
-                    "description": "${payload.statusResponse.message}"
+                    "content": " ${payload.statusResponse.message}"
                 }
             ]
         }

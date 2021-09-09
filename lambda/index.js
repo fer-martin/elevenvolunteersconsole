@@ -27,6 +27,8 @@ const moment = require('moment-timezone');
     handle(handlerInput) {
         console.log("Api Request [APIValidateArgsOnce]: ", JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
 
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
         const slots = util.getAPISlotValues(handlerInput);
         const service = slots["service"].resolved;
         const date = slots["date"].resolved;
@@ -59,6 +61,7 @@ const CheckParamsApiRecurringHandler = {
     handle(handlerInput) {
         console.log("Api Request [APIValidateArgsRecurring]: ", JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
 
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
         const slots = util.getAPISlotValues(handlerInput);
         const service = slots["service"].resolved;
@@ -68,12 +71,64 @@ const CheckParamsApiRecurringHandler = {
         const since = slots["since"].resolved;
         const until = slots["until"].resolved;
         const serviceid = slots["service"].id
+        /*
+        if (!sessionAttributes["dows"]) {
+            sessionAttributes["dows"] = []
+        }
 
-        let message = `I will ask for a volunteer for ${service} every ${dow} from ${moment('2000-01-01T' + time).locale('en').format('h A')} until ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('en').format('h A')}, starting on ${moment(since).locale('en').format('dddd, MMMM D')}, until ${moment(until).locale('en').format('dddd, MMMM D')}.`
+        sessionAttributes["dows"].push({
+            dow: dow,
+            time: time,
+            duration: duration
+        })
+        */
+        let recurring = sessionAttributes["dows"].map(e => 
+            `every ${e.dow} from ${moment('2000-01-01T' + e.time).locale('en').format('h A')} until ${moment('2000-01-01T' + e.time).add(moment.duration(e.duration)).locale('en').format('h A')}`
+        ).join(" and ")
+
+        let message = `I will ask for a volunteer for ${service} ${recurring}, starting on ${moment(since).locale('en').format('dddd, MMMM D')}, until ${moment(until).locale('en').format('dddd, MMMM D')}.`
 
         if (serviceid == "65100") {
             message = "This service is available only for blind families."
         }
+
+        let params = {
+            status: 0,
+            message: message
+        };
+
+        return handlerInput.responseBuilder
+            .withApiResponse(params)
+            .withShouldEndSession(false)
+            .getResponse();
+    }
+}
+
+const AddDowApiHandler = {
+    canHandle(handlerInput) {
+        return util.isApiRequest(handlerInput, 'APIAddDow');
+    },
+    handle(handlerInput) {
+        console.log("Api Request [APIAddDow]: ", JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
+
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
+        const slots = util.getAPISlotValues(handlerInput);
+        const dow = slots["dow"].resolved;
+        const time = slots["time"].resolved;
+        const duration = slots["duration"].resolved;
+
+        if (!sessionAttributes["dows"]) {
+            sessionAttributes["dows"] = []
+        }
+
+        sessionAttributes["dows"].push({
+            dow: dow,
+            time: time,
+            duration: duration
+        })
+
+        let message = ""
 
         let params = {
             status: 0,
@@ -103,18 +158,21 @@ const RequestVolunteerApiHandler = {
         console.log("Api Request [APIRequestVolunteer]: ", JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
 
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        sessionAttributes.StatusResponseType = {
+
+        let response = {
             status: 0,
             message: ""
         };
         //let's randomize the status!
         if (Math.random() > 0.5) {
-            sessionAttributes.StatusResponseType.status = 1
-            sessionAttributes.StatusResponseType.message = "The service overlaps."
+            response.status = 1
+            response.message = "The service overlaps."
+        } else {
+            delete(sessionAttributes["dows"])
         }
 
         return handlerInput.responseBuilder
-            .withApiResponse(sessionAttributes.StatusResponseType)
+            .withApiResponse(response)
             .withShouldEndSession(false)
             .getResponse();
     }
@@ -194,6 +252,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         RequestVolunteerApiHandler,
         CheckParamsApiHandler,
         CheckParamsApiRecurringHandler,
+        AddDowApiHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler
     )

@@ -2,6 +2,9 @@ namespace utterances
 
 import com.amazon.alexa.ask.conversations.utterances
 import types.USetInformDateRequestType
+import types.USetInformDowRequestType
+import types.USetInformDowTimeDurationRequestType
+import types.USetInformDowTimeRequestType
 import types.USetInformDurationRequestType
 import types.USetInformServiceRequestType
 import types.USetInformTimeAndDurationRequestType
@@ -9,6 +12,103 @@ import types.USetInformTimeRequestType
 import types.USetRequestVolunteer1RequestType
 import types.USetRequestVolunteer2RequestType
 import types.USetRequestVolunteer3RequestType
+import types.USetRequestVolunteer4RequestType
+import types.USetRequestVolunteer5RequestType
+import types.USetRequestVolunteer6RequestType
+
+USetInformDow = utterances<USetInformDowRequestType>(
+  samples = [
+    "every {dow}",
+    "{dow}"
+  ]
+)
+
+USetInformDowTimeDuration = utterances<USetInformDowTimeDurationRequestType>(
+  samples = [
+    "every {dow} at {time} for {duration}",
+    "{dow} at {time} for {duration}"
+  ]
+)
+
+USetInformDowTime = utterances<USetInformDowTimeRequestType>(
+  samples = [
+    "{dow} at {time}",
+    "every {dow} at {time}",
+    "{time} every {dow}",
+    "at {time} every {dow}"
+  ]
+)
+
+USetDeny = utterances(
+  samples = [
+    "no",
+    "nopes",
+    "it's ok like this"
+  ]
+)
+
+USetRequestVolunteer6 = utterances<USetRequestVolunteer6RequestType>(
+  samples = [
+    "get me a volunteer for {service} every {dow} at {time}",
+    "find a volunteer for {service} every {dow} at {time}",
+    "I want a volunteer for {service} at {time} every {dow}",
+    "I want a volunteer for {service} at {time} every {dow}",
+    "i need a volunteer for {service} for every {dow} at {time}",
+    "I want to request a volunteer for {service} for every {dow} at {time}"
+  ]
+)
+
+USetRequestVolunteer5 = utterances<USetRequestVolunteer5RequestType>(
+  samples = [
+    "i want a volunteer every {dow}",
+    "i want a volunteer for every {dow}",
+    "i want to request a volunteer every {dow}",
+    "i want to request a volunteer for every {dow}",
+    "i need a volunteer every {dow}",
+    "i need a volunteer for every {dow}",
+    "i need to request a volunteer every {dow}",
+    "i need to request a volunteer for every {dow}",
+    "find a volunteer every {dow}",
+    "find a volunteer for every {dow}",
+    "find me a volunteer every {dow}",
+    "find me a volunteer for every {dow}"
+  ]
+)
+
+USetRequestVolunteer4 = utterances<USetRequestVolunteer4RequestType>(
+  samples = [
+    "i want  a volunteer for {service} every {dow}",
+    "i want  a volunteer for {service} for every {dow}",
+    "i want to request a volunteer for {service} every {dow}",
+    "i want to request a volunteer for {service} for every {dow}",
+    "i need  a volunteer for {service} every {dow}",
+    "i need  a volunteer for {service} for every {dow}",
+    "i need to request a volunteer for {service} every {dow}",
+    "i need to request a volunteer for {service} for every {dow}",
+    "find me a volunteer for {service} every {dow}",
+    "find me a volunteer for {service} for every {dow}",
+    "find a volunteer for {service} every {dow}",
+    "find a volunteer for {service} for every {dow}",
+    "i want  a volunteer  every {dow} for {service}",
+    "i want  a volunteer every {dow} for {service}",
+    "i want  a volunteer for every {dow} for {service}",
+    "i want to request a volunteer  every {dow} for {service}",
+    "i want to request a volunteer every {dow} for {service}",
+    "i want to request a volunteer for every {dow} for {service}",
+    "i need  a volunteer  every {dow} for {service}",
+    "i need  a volunteer every {dow} for {service}",
+    "i need  a volunteer for every {dow} for {service}",
+    "i need to request a volunteer  every {dow} for {service}",
+    "i need to request a volunteer every {dow} for {service}",
+    "i need to request a volunteer for every {dow} for {service}",
+    "find me a volunteer  every {dow} for {service}",
+    "find me a volunteer every {dow} for {service}",
+    "find me a volunteer for every {dow} for {service}",
+    "find a volunteer  every {dow} for {service}",
+    "find a volunteer every {dow} for {service}",
+    "find a volunteer for every {dow} for {service}"
+  ]
+)
 
 USetRequestVolunteer3 = utterances<USetRequestVolunteer3RequestType>(
   samples = [

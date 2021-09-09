@@ -1,10 +1,76 @@
 namespace types
 
+import com.amazon.ask.types.builtins.AMAZON.Book
 import com.amazon.ask.types.builtins.AMAZON.DATE
 import com.amazon.ask.types.builtins.AMAZON.DURATION
+import com.amazon.ask.types.builtins.AMAZON.DayOfWeek
 import com.amazon.ask.types.builtins.AMAZON.NUMBER
 import com.amazon.ask.types.builtins.AMAZON.TIME
 import slotTypes.service
+
+type USetInformDowRequestType {
+  DayOfWeek dow
+}
+
+type USetInformDowTimeDurationRequestType {
+  DURATION duration
+  TIME time
+  DayOfWeek dow
+}
+
+type USetRequestVolunteer5RequestType {
+  DayOfWeek dow
+}
+
+type USetInformServiceRequestType {
+  service service
+}
+
+type StatusResponseType {
+  Book message
+  NUMBER status
+}
+
+type PAYLOAD_TYPE20 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE1 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE2 {
+  StatusResponseType statusResponse
+}
+
+type USetRequestVolunteer4RequestType {
+  service service
+  DayOfWeek dow
+}
+
+type PAYLOAD_TYPE7 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE8 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE9 {
+  StatusResponseType statusResponse
+}
+
+type USetInformDateRequestType {
+  DATE date
+}
+
+type PAYLOAD_TYPE5 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE6 {
+  StatusResponseType statusResponse
+}
 
 type USetRequestVolunteer3RequestType {
   DATE date
@@ -16,23 +82,39 @@ type USetInformTimeRequestType {
   TIME time
 }
 
-type USetInformServiceRequestType {
+type PAYLOAD_TYPE14 {
+  StatusResponseType statusResponse
+}
+
+type USetInformDowTimeRequestType {
+  TIME time
+  DayOfWeek dow
+}
+
+type PAYLOAD_TYPE13 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE12 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE11 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE10 {
+  StatusResponseType statusResponse
+}
+
+type USetRequestVolunteer6RequestType {
   service service
+  TIME time
+  DayOfWeek dow
 }
 
 type USetInformDurationRequestType {
   DURATION duration
-}
-
-type PAYLOAD_TYPE0 {
-  DATE date
-  DURATION duration
-  service service
-  TIME time
-}
-
-type PAYLOAD_TYPE1 {
-  VolunteerRequest volunteerRequest
 }
 
 type USetRequestVolunteer1RequestType {
@@ -40,19 +122,8 @@ type USetRequestVolunteer1RequestType {
   service service
 }
 
-type PAYLOAD_TYPE2 {
-  DATE date
-  DURATION duration
-  service service
-  TIME time
-}
-
-type VolunteerRequest {
-  DATE date
-  DURATION duration
-  service service
-  TIME time
-  NUMBER status
+type PAYLOAD_TYPE19 {
+  StatusResponseType statusResponse
 }
 
 type USetInformTimeAndDurationRequestType {
@@ -60,37 +131,15 @@ type USetInformTimeAndDurationRequestType {
   TIME time
 }
 
-type PAYLOAD_TYPE7 {
-  VolunteerRequest volunteerRequest
+type PAYLOAD_TYPE17 {
+  StatusResponseType statusResponse
+}
+
+type PAYLOAD_TYPE16 {
+  StatusResponseType statusResponse
 }
 
 type USetRequestVolunteer2RequestType {
-  DATE date
-  DURATION duration
-  service service
-  TIME time
-}
-
-type USetInformDateRequestType {
-  DATE date
-}
-
-type PAYLOAD_TYPE3 {
-  VolunteerRequest volunteerRequest
-}
-
-type PAYLOAD_TYPE4 {
-  DATE date
-  DURATION duration
-  service service
-  TIME time
-}
-
-type PAYLOAD_TYPE5 {
-  VolunteerRequest volunteerRequest
-}
-
-type PAYLOAD_TYPE6 {
   DATE date
   DURATION duration
   service service
