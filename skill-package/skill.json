@@ -53,7 +53,16 @@
             ],
             "type": "ALEXA_PRESENTATION_APL"
           }
-        ]
+        ],
+        "locales": {
+          "es-US": {
+            "dialogManagement": {
+              "sessionStartDelegationStrategy": {
+                "target": "AMAZON.Conversations"
+              }
+            }
+          }
+        }
       }
     },
     "manifestVersion": "1.0",
@@ -63,9 +72,6 @@
       }
     },
     "publishingInformation": {
-      "automaticDistribution": {
-        "isActive": false
-      },
       "category": "KNOWLEDGE_AND_TRIVIA",
       "distributionCountries": [],
       "isAvailableWorldwide": true,
@@ -80,6 +86,9 @@
           "keywords": [],
           "name": "Volunteers Conversations",
           "summary": "Sample Short Description"
+        },
+        "es-US": {
+          "name": "Volunteers Conversations"
         }
       },
       "testingInstructions": "Sample Testing Instructions."

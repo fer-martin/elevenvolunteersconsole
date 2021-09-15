@@ -8,12 +8,18 @@
         "item": {
             "type": "Selector",
             "strategy": "randomItem",
-            "description": "Change 'type' above to try different Selector Component Types like Sequencer",
             "items": [
                 {
                     "type": "Speech",
                     "contentType": "text",
+                    "when": "${environment.alexaLocale == 'en-US'}",
                     "content": "Welcome to the volunteer skill. How can i help?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "when": "${environment.alexaLocale == 'es-US'}",
+                    "content": "Te damos la bienvenida a la skill de voluntarios. ¿Cómo puedo ayudarte?"
                 }
             ]
         }
