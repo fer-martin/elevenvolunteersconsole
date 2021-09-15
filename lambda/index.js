@@ -36,10 +36,10 @@ const moment = require('moment-timezone');
         const duration = slots["duration"].resolved;
         const serviceid = slots["service"].id
 
-        let message = `I will ask for a volunteer for ${service} on ${moment(date).locale('en').format('dddd, MMMM D')}, from ${moment('2000-01-01T' + time).locale('en').format('h A')} until ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('en').format('h A')}.`
+        let message = handlerInput.t('confirm-once', service, date, time, duration)
 
         if (serviceid == "65100") {
-            message += " This service is available only for blind families."
+            message += handlerInput.t('blind-families-only')
         }
 
         let params = {
@@ -83,13 +83,13 @@ const CheckParamsApiRecurringHandler = {
         })
         */
         let recurring = sessionAttributes["dows"].map(e => 
-            `every ${e.dow} from ${moment('2000-01-01T' + e.time).locale('en').format('h A')} until ${moment('2000-01-01T' + e.time).add(moment.duration(e.duration)).locale('en').format('h A')}`
+            handlerInput.t('rec-item', e.dow, e.time, e.duration)
         ).join(" and ")
 
-        let message = `I will ask for a volunteer for ${service} ${recurring}, starting on ${moment(since).locale('en').format('dddd, MMMM D')}, until ${moment(until).locale('en').format('dddd, MMMM D')}.`
+        let message = handlerInput.t('confirm-rec', service, recurring, since, until)
 
         if (serviceid == "65100") {
-            message = "This service is available only for blind families."
+            message = handlerInput.t('blind-families-only')
         }
 
         let params = {
@@ -166,7 +166,7 @@ const RequestVolunteerApiHandler = {
         //let's randomize the status!
         if (Math.random() > 0.5) {
             response.status = 1
-            response.message = "The service overlaps."
+            response.message = handlerInput.t('service-overlaps')
         } else {
             delete(sessionAttributes["dows"])
         }
@@ -193,7 +193,7 @@ const FallbackIntentHandler = {
     handle(handlerInput) {
         const intentName = handlerInput.requestEnvelope.request.intent.name;
         console.log('In catch all intent handler. Intent invoked: ' + intentName);
-        const speechOutput = "Hmm, I'm not sure. I can help you get a volunteer. What would you like to do";
+        const speechOutput = handlerInput.t('fallback')
 
         return handlerInput.responseBuilder
             .speak(speechOutput)
@@ -219,7 +219,7 @@ const ErrorHandler = {
     },
     handle(handlerInput, error) {
         console.log(`~~~~ Error handled: ${error.stack}`);
-        const speakOutput = `Sorry, I had trouble doing what you asked. Please try again.`;
+        const speakOutput = handlerInput.t('error');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -241,11 +241,19 @@ const LogResponseInterceptor = {
         console.log(`RESPONSE = ${JSON.stringify(response)}`);
     },
 };
+
+const InitRequestInterceptor = {
+    process(handlerInput) {
+        const i18n = require('./i18n')
+        handlerInput.t = (...args) => i18n.response(handlerInput.requestEnvelope.request.locale, ...args);
+    }
+}
 // The SkillBuilder acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
 exports.handler = Alexa.SkillBuilders.custom()
     .addErrorHandlers(ErrorHandler)
+    .addRequestInterceptors(InitRequestInterceptor)
     .addRequestInterceptors(LogRequestInterceptor)
     .addResponseInterceptors(LogResponseInterceptor)
     .addRequestHandlers(
