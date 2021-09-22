@@ -17,10 +17,25 @@
 const Alexa = require('ask-sdk-core');
 const util = require('./util');
 const moment = require('moment-timezone');
+
+const LaunchRequestHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
+    },
+    handle(handlerInput) {
+        const speechOutput = handlerInput.t('welcome')
+
+        return handlerInput.responseBuilder
+            .speak(speechOutput)
+            .reprompt(speechOutput)
+            .getResponse();
+    }
+}
+
 /**
  * API Handler for Check Params
  */
- const CheckParamsApiHandler = {
+const CheckParamsApiHandler = {
     canHandle(handlerInput) {
         return util.isApiRequest(handlerInput, 'APIValidateArgsOnce');
     },
@@ -75,14 +90,14 @@ const CheckParamsApiRecurringHandler = {
         if (!sessionAttributes["dows"]) {
             sessionAttributes["dows"] = []
         }
-
+ 
         sessionAttributes["dows"].push({
             dow: dow,
             time: time,
             duration: duration
         })
         */
-        let recurring = sessionAttributes["dows"].map(e => 
+        let recurring = sessionAttributes["dows"].map(e =>
             handlerInput.t('rec-item', e.dow, e.time, e.duration)
         ).join(" and ")
 
@@ -168,7 +183,7 @@ const RequestVolunteerApiHandler = {
             response.status = 1
             response.message = handlerInput.t('service-overlaps')
         } else {
-            delete(sessionAttributes["dows"])
+            delete (sessionAttributes["dows"])
         }
 
         return handlerInput.responseBuilder
@@ -257,6 +272,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestInterceptors(LogRequestInterceptor)
     .addResponseInterceptors(LogResponseInterceptor)
     .addRequestHandlers(
+        LaunchRequestHandler,
         RequestVolunteerApiHandler,
         CheckParamsApiHandler,
         CheckParamsApiRecurringHandler,
