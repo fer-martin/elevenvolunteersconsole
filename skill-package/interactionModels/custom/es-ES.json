@@ -498,6 +498,42 @@
                     }
                 ],
                 "name": "service"
+            },
+            {
+                "values": [
+                    {
+                        "id": "recurrente",
+                        "name": {
+                            "value": "recurrente",
+                            "synonyms": [
+                                "periódico",
+                                "varias veces",
+                                "muchas veces",
+                                "en varias ocasiones"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "simple",
+                        "name": {
+                            "value": "una vez",
+                            "synonyms": [
+                                "una sola vez",
+                                "ésta vez",
+                                "por una vez",
+                                "por una sola vez",
+                                "por ésta vez",
+                                "solo una vez",
+                                "solo una sola vez",
+                                "solo ésta vez",
+                                "solo por una vez",
+                                "solo por una sola vez",
+                                "solo por ésta vez"
+                            ]
+                        }
+                    }
+                ],
+                "name": "periodicity"
             }
         ]
     }

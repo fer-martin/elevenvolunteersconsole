@@ -10,24 +10,6 @@
             "items": [
                 {
                     "type": "Selector",
-                    "when": "${environment.alexaLocale == 'en-US'}",
-                    "strategy": "randomItem",
-                    "items": [
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "at what time?"
-                        },
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "at what time do you need it?"
-                        }
-                    ]
-                },
-                {
-                    "type": "Selector",
-                    "when": "${String.slice(environment.alexaLocale, 0, 2) == 'es'}",
                     "strategy": "randomItem",
                     "items": [
                         {

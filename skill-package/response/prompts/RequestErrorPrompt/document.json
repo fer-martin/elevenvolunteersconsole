@@ -8,25 +8,21 @@
         "item": {
             "type": "Selector",
             "strategy": "randomItem",
-            "description": "Change 'type' above to try different Selector Component Types like Sequencer",
             "items": [
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "content": "Sorry, can't do",
-                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                    "content": "Lo siento, no puedo"
                 },
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "content": "Ouch, there's been an error",
-                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                    "content": "ay ay ay, ha ocurrido un error"
                 },
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "content": "nopes, something went south",
-                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                    "content": "Ah, lo lamento, algo ha fallado"
                 }
             ]
         }

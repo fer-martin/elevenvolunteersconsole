@@ -31,11 +31,56 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 }
+/**
+ * API Handler for Check Params
+ */
+ const APIPeriodicityHandler = {
+    canHandle(handlerInput) {
+        return util.isApiRequest(handlerInput, 'APIPeriodicity');
+    },
+    handle(handlerInput) {
+        console.log("Api Request [APIPeriodicity]: ", JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
+
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
+        const slots = util.getAPISlotValues(handlerInput);
+        const service = slots["service"].resolved;
+        const serviceid = slots["service"].id;
+        
+        let periodicity = slots["periodicity"].id;
+        const simpleinferred = slots["simpleinferred"].resolved
+        const recurringinferred = slots["recurringinferred"].resolved
+
+        if (simpleinferred) {
+            periodicity = "simple"
+            sessionAttributes["date"] = simpleinferred
+        }
+        if (recurringinferred) {
+            periodicity = "recurrente"
+            sessionAttributes["dows"] = []        
+        }
+
+        sessionAttributes["service"] = service
+        sessionAttributes["serviceid"] = serviceid
+        sessionAttributes["periodicity"] = periodicity
+
+        let params = {
+            status: periodicity,
+            message: ""
+        };
+
+        return handlerInput.responseBuilder
+            .withApiResponse(params)
+            .withShouldEndSession(false)
+            .getResponse();
+    }
+}
+
 
 /**
  * API Handler for Check Params
  */
-const CheckParamsApiHandler = {
+const APIValidateArgsOnceHandler = {
     canHandle(handlerInput) {
         return util.isApiRequest(handlerInput, 'APIValidateArgsOnce');
     },
@@ -45,18 +90,20 @@ const CheckParamsApiHandler = {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
         const slots = util.getAPISlotValues(handlerInput);
-        const service = slots["service"].resolved;
         const date = slots["date"].resolved;
-        const time = slots["time"].resolved;
-        const duration = slots["duration"].resolved;
-        const serviceid = slots["service"].id
+        const starttime = slots["starttime"].resolved;
+        const endtime = slots["endtime"].resolved;
 
-        let message = handlerInput.t('confirm-once', service, date, time, duration)
+        sessionAttributes["date"] = date
+        sessionAttributes["starttime"] = starttime
+        sessionAttributes["endtime"] = endtime
 
-        if (serviceid == "65100") {
+        let message = handlerInput.t('confirm-once', sessionAttributes["service"], date, starttime, endtime)
+
+        if (sessionAttributes["serviceid"] == "65100") {
             message += handlerInput.t('blind-families-only')
         }
-
+                
         let params = {
             status: 0,
             message: message
@@ -69,7 +116,7 @@ const CheckParamsApiHandler = {
     }
 }
 
-const CheckParamsApiRecurringHandler = {
+const APIValidateArgsRecurringHandler = {
     canHandle(handlerInput) {
         return util.isApiRequest(handlerInput, 'APIValidateArgsRecurring');
     },
@@ -79,31 +126,19 @@ const CheckParamsApiRecurringHandler = {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
         const slots = util.getAPISlotValues(handlerInput);
-        const service = slots["service"].resolved;
-        const dow = slots["dow"].resolved;
-        const time = slots["time"].resolved;
-        const duration = slots["duration"].resolved;
-        const since = slots["since"].resolved;
-        const until = slots["until"].resolved;
-        const serviceid = slots["service"].id
-        /*
-        if (!sessionAttributes["dows"]) {
-            sessionAttributes["dows"] = []
-        }
- 
-        sessionAttributes["dows"].push({
-            dow: dow,
-            time: time,
-            duration: duration
-        })
-        */
+        const datesince = slots["datesince"].resolved;
+        const dateuntil = slots["dateuntil"].resolved;
+
+        sessionAttributes["datesince"] = datesince
+        sessionAttributes["dateuntil"] = dateuntil
+
         let recurring = sessionAttributes["dows"].map(e =>
-            handlerInput.t('rec-item', e.dow, e.time, e.duration)
+            handlerInput.t('rec-item', e.dow, e.starttime, e.endtime)
         ).join(" and ")
 
-        let message = handlerInput.t('confirm-rec', service, recurring, since, until)
+        let message = handlerInput.t('confirm-rec', sessionAttributes["service"], recurring, datesince, dateuntil)
 
-        if (serviceid == "65100") {
+        if (sessionAttributes["serviceid"] == "65100") {
             message = handlerInput.t('blind-families-only')
         }
 
@@ -119,7 +154,7 @@ const CheckParamsApiRecurringHandler = {
     }
 }
 
-const AddDowApiHandler = {
+const APIAddDowHandler = {
     canHandle(handlerInput) {
         return util.isApiRequest(handlerInput, 'APIAddDow');
     },
@@ -130,8 +165,8 @@ const AddDowApiHandler = {
 
         const slots = util.getAPISlotValues(handlerInput);
         const dow = slots["dow"].resolved;
-        const time = slots["time"].resolved;
-        const duration = slots["duration"].resolved;
+        const starttime = slots["starttime"].resolved;
+        const endtime = slots["endtime"].resolved;
 
         if (!sessionAttributes["dows"]) {
             sessionAttributes["dows"] = []
@@ -139,8 +174,8 @@ const AddDowApiHandler = {
 
         sessionAttributes["dows"].push({
             dow: dow,
-            time: time,
-            duration: duration
+            starttime: starttime,
+            endtime: endtime
         })
 
         let message = ""
@@ -165,7 +200,7 @@ const AddDowApiHandler = {
  *
  * See https://developer.amazon.com/en-US/docs/alexa/conversations/handle-api-calls.html
  */
-const RequestVolunteerApiHandler = {
+const APIRequestVolunteerHandler = {
     canHandle(handlerInput) {
         return util.isApiRequest(handlerInput, 'APIRequestVolunteer');
     },
@@ -247,6 +282,7 @@ const ErrorHandler = {
 
 const LogRequestInterceptor = {
     process(handlerInput) {
+        console.log(`Request: ${handlerInput.requestEnvelope.request.type} ${handlerInput.requestEnvelope.request.type == "IntentRequest" ? handlerInput.requestEnvelope.request.intent.name : ""}`);
         console.log(`REQUEST ENVELOPE = ${JSON.stringify(handlerInput.requestEnvelope)}`);
     },
 };
@@ -273,10 +309,11 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addResponseInterceptors(LogResponseInterceptor)
     .addRequestHandlers(
         LaunchRequestHandler,
-        RequestVolunteerApiHandler,
-        CheckParamsApiHandler,
-        CheckParamsApiRecurringHandler,
-        AddDowApiHandler,
+        APIPeriodicityHandler,
+        APIValidateArgsOnceHandler,
+        APIAddDowHandler,
+        APIValidateArgsRecurringHandler,
+        APIRequestVolunteerHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler
     )

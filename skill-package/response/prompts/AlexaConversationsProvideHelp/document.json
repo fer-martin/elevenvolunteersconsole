@@ -12,13 +12,6 @@
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "when": "${environment.alexaLocale == 'en-US'}",
-                    "content": "I can help you ask for a volunteer, just ask \"i need a volunteer\"."
-                },
-                {
-                    "type": "Speech",
-                    "contentType": "text",
-                    "when": "${String.slice(environment.alexaLocale, 0, 2) == 'es'}",
                     "content": "Te puedo ayudar a conseguir un voluntario, solo di \"necesito un voluntario\"."
                 }
             ]

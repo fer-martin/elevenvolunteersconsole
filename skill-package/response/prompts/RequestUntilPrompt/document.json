@@ -10,13 +10,6 @@
             "items": [
                 {
                     "type": "Speech",
-                    "when": "${environment.alexaLocale == 'en-US'}",
-                    "contentType": "text",
-                    "content": "until what day?"
-                },
-                {
-                    "type": "Speech",
-                    "when": "${String.slice(environment.alexaLocale, 0, 2) == 'es'}",
                     "contentType": "text",
                     "content": "hasta qué día?"
                 }

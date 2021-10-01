@@ -10,29 +10,6 @@
             "items": [
                 {
                     "type": "Sequencer",
-                    "when": "${environment.alexaLocale == 'en-US'}",
-                    "items": [
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "Ok"
-                        },
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "when": "${payload.statusResponse.message != ''}",
-                            "content": " ${payload.statusResponse.message}"
-                        },
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "Is that ok?"
-                        }
-                    ]
-                },
-                {
-                    "type": "Sequencer",
-                    "when": "${String.slice(environment.alexaLocale, 0, 2) == 'es'}",
                     "items": [
                         {
                             "type": "Speech",

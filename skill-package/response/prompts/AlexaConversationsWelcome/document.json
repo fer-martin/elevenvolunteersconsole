@@ -12,13 +12,6 @@
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "when": "${environment.alexaLocale == 'en-US'}",
-                    "content": "Welcome to the volunteer skill. How can i help?"
-                },
-                {
-                    "type": "Speech",
-                    "contentType": "text",
-                    "when": "${String.slice(environment.alexaLocale, 0, 2) == 'es'}",
                     "content": "Te damos la bienvenida a la skill de voluntarios. ¿Cómo puedo ayudarte?"
                 }
             ]

@@ -2,36 +2,16 @@
 const moment = require('moment-timezone');
 
 const speech = {
-	'es-US': {
-		'confirm-once': (service, date, time, duration) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D de MMMM')}, desde las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}.`],
-		'confirm-rec': (service, recurring, since, until) => [`Voy a solicitar un voluntario para ${service} ${recurring}, comenzando el ${moment(since).locale('es').format('dddd, D de MMMM')}, hasta el ${moment(until).locale('es').format('dddd, D de MMMM')}.`],
-		'rec-item': (dow, time, duration) => [`los ${dow} de las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}`],
-		'blind-families-only': () => ["este servicio es solamente para familias ciegas."],
-		'service-overlaps': () => [`el servicio se superpone con otro`],
-		'fallback': () => [`No estoy segura. Te puedo ayudar a solicitar un voluntario. ¿que quieres hacer?`],
-		'error': () => [`Lo siento, he tenido un problema. Prueba nuevamente.`],
-		'welcome': () => [`Te damos la bienvenida.`],
-	},
 	'es-ES': {
-		'confirm-once': (service, date, time, duration) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D de MMMM')}, desde las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}.`],
-		'confirm-rec': (service, recurring, since, until) => [`Voy a solicitar un voluntario para ${service} ${recurring}, comenzando el ${moment(since).locale('es').format('dddd, D de MMMM')}, hasta el ${moment(until).locale('es').format('dddd, D de MMMM')}.`],
-		'rec-item': (dow, time, duration) => [`los ${dow} de las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}`],
+		'confirm-once': (service, date, starttime, endtime) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D[ de ]MMMM')}, desde las ${moment('2000-01-01T' + starttime).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + endtime).locale('es').format('h A')}.`],
+		'confirm-rec': (service, recurring, since, until) => [`Voy a solicitar un voluntario para ${service} ${recurring}, comenzando el ${moment(since).locale('es').format('dddd, D[ de ]MMMM')}, hasta el ${moment(until).locale('es').format('dddd, D[ de ]MMMM')}.`],
+		'rec-item': (dow, starttime, endtime) => [`los ${dow} de las ${moment('2000-01-01T' + starttime).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + endtime).locale('es').format('h A')}`],
 		'blind-families-only': () => ["este servicio es solamente para familias ciegas."],
 		'service-overlaps': () => [`el servicio se superpone con otro`],
 		'fallback': () => [`No estoy segura. Te puedo ayudar a solicitar un voluntario. ¿que quieres hacer?`],
 		'error': () => [`Lo siento, he tenido un problema. Prueba nuevamente.`],
 		'welcome': () => [`Te damos la bienvenida.`],
-	},
-	'en-US': {
-		'confirm-once': (service, date, time, duration) => [`I will ask for a volunteer for ${service} on ${moment(date).locale('en').format('dddd, MMMM D')}, from ${moment('2000-01-01T' + time).locale('en').format('h A')} until ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('en').format('h A')}.`],
-		'confirm-rec': (service, recurring, since, until) => [`I will ask for a volunteer for ${service} ${recurring}, starting on ${moment(since).locale('en').format('dddd, MMMM D')}, until ${moment(until).locale('en').format('dddd, MMMM D')}.`],
-		'rec-item': (dow, time, duration) => [`every ${dow} from ${moment('2000-01-01T' + time).locale('en').format('h A')} until ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('en').format('h A')}`],
-		'blind-families-only': () => ["This service is available only for blind families."],
-		'service-overlaps': () => [`service overlaps`],
-		'fallback': () => ["Hmm, I'm not sure. I can help you get a volunteer. What would you like to do"],
-		'error': () => [`Sorry, I had trouble doing what you asked. Please try again.`],
-		'welcome': () => [`Welcome!`],
-	},
+	}
 }
 
 exports.response = (locale, key, ...values) => {

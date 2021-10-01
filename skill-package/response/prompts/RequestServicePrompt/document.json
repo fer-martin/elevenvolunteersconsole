@@ -10,29 +10,6 @@
             "items": [
                 {
                     "type": "Selector",
-                    "when": "${environment.alexaLocale == 'en-US'}",
-                    "strategy": "randomItem",
-                    "items": [
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "For what service?"
-                        },
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "what service do you need?"
-                        },
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "tell me what service you need"
-                        }
-                    ]
-                },
-                {
-                    "type": "Selector",
-                    "when": "${String.slice(environment.alexaLocale, 0, 2) == 'es'}",
                     "strategy": "randomItem",
                     "items": [
                         {

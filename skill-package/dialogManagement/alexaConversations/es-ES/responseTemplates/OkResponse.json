@@ -3,7 +3,7 @@
     "arguments": {},
     "templates": {
         "prompt": {
-            "name": "RequestDurationPrompt",
+            "name": "OkPrompt",
             "type": "APL-A"
         },
         "reprompt": null,

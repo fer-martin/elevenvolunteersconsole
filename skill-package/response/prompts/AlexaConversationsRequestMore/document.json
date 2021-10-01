@@ -12,13 +12,6 @@
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "when": "${environment.alexaLocale == 'en-US'}",
-                    "content": "What do you want to do."
-                },
-                {
-                    "type": "Speech",
-                    "contentType": "text",
-                    "when": "${String.slice(environment.alexaLocale, 0, 2) == 'es'}",
                     "content": "¿qué quieres hacer?"
                 }
             ]
