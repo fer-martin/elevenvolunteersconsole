@@ -5,40 +5,84 @@
         "parameters": [
             "payload"
         ],
-        "items": {
+        "item": {
             "type": "Sequencer",
             "items": [
                 {
-                    "type": "Selector",
-                    "strategy": "randomItem",
-                    "description": "Change 'type' above to try different Selector Component Types like Sequencer",
-                    "when": "${payload.statusResponse.status == 0}",
+                    "type": "Sequencer",
+                    "when": "${environment.alexaLocale == 'en-US'}",
                     "items": [
                         {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "Done",
-                            "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                            "type": "Selector",
+                            "strategy": "randomItem",
+                            "description": "Change 'type' above to try different Selector Component Types like Sequencer",
+                            "when": "${payload.statusResponse.status == 0}",
+                            "items": [
+                                {
+                                    "type": "Speech",
+                                    "contentType": "text",
+                                    "content": "Done",
+                                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                                },
+                                {
+                                    "type": "Speech",
+                                    "contentType": "text",
+                                    "content": "It's done",
+                                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                                },
+                                {
+                                    "type": "Speech",
+                                    "contentType": "text",
+                                    "content": "I have requested the volunteer",
+                                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                                }
+                            ]
                         },
                         {
                             "type": "Speech",
+                            "when": "${payload.statusResponse.status != 0}",
                             "contentType": "text",
-                            "content": "It's done",
-                            "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
-                        },
-                        {
-                            "type": "Speech",
-                            "contentType": "text",
-                            "content": "I have requested the volunteer",
-                            "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                            "content": " ${payload.statusResponse.message}"
                         }
                     ]
                 },
                 {
-                    "type": "Speech",
-                    "when": "${payload.statusResponse.status != 0}",
-                    "contentType": "text",
-                    "content": " ${payload.statusResponse.message}"
+                    "type": "Sequencer",
+                    "when": "${String.slice(environment.alexaLocale, 0, 2) == 'es'}",
+                    "items": [
+                        {
+                            "type": "Selector",
+                            "strategy": "randomItem",
+                            "description": "Change 'type' above to try different Selector Component Types like Sequencer",
+                            "when": "${payload.statusResponse.status == 0}",
+                            "items": [
+                                {
+                                    "type": "Speech",
+                                    "contentType": "text",
+                                    "content": "Done",
+                                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                                },
+                                {
+                                    "type": "Speech",
+                                    "contentType": "text",
+                                    "content": "It's done",
+                                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                                },
+                                {
+                                    "type": "Speech",
+                                    "contentType": "text",
+                                    "content": "I have requested the volunteer",
+                                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Speech",
+                            "when": "${payload.statusResponse.status != 0}",
+                            "contentType": "text",
+                            "content": " ${payload.statusResponse.message}"
+                        }
+                    ]
                 }
             ]
         }

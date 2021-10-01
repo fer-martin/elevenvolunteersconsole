@@ -1,0 +1,16 @@
+{
+    "version": "0.1",
+    "arguments": {
+        "statusResponse": "StatusResponse"
+    },
+    "templates": {
+        "prompt": {
+            "name": "ConfirmRequestPrompt",
+            "type": "APL-A"
+        },
+        "reprompt": null,
+        "display": null
+    },
+    "situations": [],
+    "etag": "UfsLwfvO9JDn2H9CtLV5Rw=="
+}
