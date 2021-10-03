@@ -43,13 +43,12 @@ const LaunchRequestHandler = {
 
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        const slots = util.getAPISlotValues(handlerInput);
-        const service = slots["service"].resolved;
-        const serviceid = slots["service"].id;
+        const service = util.getApiSlot(handlerInput, "service").resolved;
+        const serviceid = util.getApiSlot(handlerInput, "service").id;
         
-        let periodicity = slots["periodicity"].id;
-        const simpleinferred = slots["simpleinferred"].resolved
-        const recurringinferred = slots["recurringinferred"].resolved
+        let periodicity = util.getApiSlot(handlerInput, "periodicity").id;
+        const simpleinferred = util.getApiSlot(handlerInput, "simpleinferred").resolved
+        const recurringinferred = util.getApiSlot(handlerInput, "recurringinferred").resolved
 
         if (simpleinferred) {
             periodicity = "simple"
@@ -89,10 +88,9 @@ const APIValidateArgsOnceHandler = {
 
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        const slots = util.getAPISlotValues(handlerInput);
-        const date = slots["date"].resolved;
-        const starttime = slots["starttime"].resolved;
-        const endtime = slots["endtime"].resolved;
+        const date = util.getApiSlot(handlerInput, "date").resolved;
+        const starttime = util.getApiSlot(handlerInput, "starttime").resolved;
+        const endtime = util.getApiSlot(handlerInput, "endtime").resolved;
 
         sessionAttributes["date"] = date
         sessionAttributes["starttime"] = starttime
@@ -125,9 +123,8 @@ const APIValidateArgsRecurringHandler = {
 
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        const slots = util.getAPISlotValues(handlerInput);
-        const datesince = slots["datesince"].resolved;
-        const dateuntil = slots["dateuntil"].resolved;
+        const datesince = util.getApiSlot(handlerInput, "datesince").resolved;
+        const dateuntil = util.getApiSlot(handlerInput, "dateuntil").resolved;
 
         sessionAttributes["datesince"] = datesince
         sessionAttributes["dateuntil"] = dateuntil
@@ -163,10 +160,9 @@ const APIAddDowHandler = {
 
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        const slots = util.getAPISlotValues(handlerInput);
-        const dow = slots["dow"].resolved;
-        const starttime = slots["starttime"].resolved;
-        const endtime = slots["endtime"].resolved;
+        const dow = util.getApiSlot(handlerInput, "dow").resolved;
+        const starttime = util.getApiSlot(handlerInput, "starttime").resolved;
+        const endtime = util.getApiSlot(handlerInput, "endtime").resolved;
 
         if (!sessionAttributes["dows"]) {
             sessionAttributes["dows"] = []

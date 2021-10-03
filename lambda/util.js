@@ -52,6 +52,66 @@ module.exports.getApiSlots = (handlerInput) => {
     }
 }
 
+
+module.exports.getApiSlot = function (handlerInput, slot) {
+    const filledSlots = handlerInput.requestEnvelope.request.apiRequest.slots
+
+    if (filledSlots[slot]) {
+        if (filledSlots[slot] &&
+            filledSlots[slot].resolutions &&
+            filledSlots[slot].resolutions.resolutionsPerAuthority[0] &&
+            filledSlots[slot].resolutions.resolutionsPerAuthority[0].status &&
+            filledSlots[slot].resolutions.resolutionsPerAuthority[0].status.code) {
+            switch (filledSlots[slot].resolutions.resolutionsPerAuthority[0].status.code) {
+                case 'ER_SUCCESS_MATCH':
+                    return {
+                        id: filledSlots[slot].resolutions.resolutionsPerAuthority[0].values[0].value.id,
+                        heardAs: filledSlots[slot].value,
+                        resolved: filledSlots[slot].resolutions.resolutionsPerAuthority[0].values[0].value.name,
+                        confirmationStatus: filledSlots[slot].confirmationStatus,
+                        ERstatus: 'ER_SUCCESS_MATCH'
+                    };
+                    break;
+                case 'ER_SUCCESS_NO_MATCH':
+                    return {
+                        id: null,
+                        heardAs: filledSlots[slot].value,
+                        resolved: '',
+                        confirmationStatus: filledSlots[slot].confirmationStatus,
+                        ERstatus: 'ER_SUCCESS_NO_MATCH'
+                    };
+                    break;
+                default:
+                    return {
+                        id: null,
+                        heardAs: filledSlots[slot].value,
+                        resolved: '',
+                        confirmationStatus: filledSlots[slot].confirmationStatus,
+                        ERstatus: ''
+                    };
+                    break;
+            }
+        } else {
+            return {
+                id: null,
+                heardAs: filledSlots[slot].value,
+                resolved: filledSlots[slot].value,
+                confirmationStatus: filledSlots[slot].confirmationStatus,
+                ERstatus: ''
+            };
+        }
+    } else {
+        return {
+            id: null,
+            heardAs: '',
+            resolved: '',
+            confirmationStatus: '',
+            ERstatus: ''
+        }
+    }
+
+}
+
 module.exports.getAPISlotValues = function (handlerInput) {
     const filledSlots = handlerInput.requestEnvelope.request.apiRequest.slots
     const slotValues = {};
