@@ -90,13 +90,13 @@ const APIValidateArgsOnceHandler = {
 
         const date = util.getApiSlot(handlerInput, "date").resolved;
         const starttime = util.getApiSlot(handlerInput, "starttime").resolved;
-        const endtime = util.getApiSlot(handlerInput, "endtime").resolved;
+        const duration = util.getApiSlot(handlerInput, "duration").resolved;
 
         sessionAttributes["date"] = date
         sessionAttributes["starttime"] = starttime
-        sessionAttributes["endtime"] = endtime
+        sessionAttributes["duration"] = duration
 
-        let message = handlerInput.t('confirm-once', sessionAttributes["service"], date, starttime, endtime)
+        let message = handlerInput.t('confirm-once', sessionAttributes["service"], date, starttime, duration)
 
         if (sessionAttributes["serviceid"] == "65100") {
             message += handlerInput.t('blind-families-only')
@@ -130,7 +130,7 @@ const APIValidateArgsRecurringHandler = {
         sessionAttributes["dateuntil"] = dateuntil
 
         let recurring = sessionAttributes["dows"].map(e =>
-            handlerInput.t('rec-item', e.dow, e.starttime, e.endtime)
+            handlerInput.t('rec-item', e.dow, e.starttime, e.duration)
         ).join(" and ")
 
         let message = handlerInput.t('confirm-rec', sessionAttributes["service"], recurring, datesince, dateuntil)
@@ -162,7 +162,7 @@ const APIAddDowHandler = {
 
         const dow = util.getApiSlot(handlerInput, "dow").resolved;
         const starttime = util.getApiSlot(handlerInput, "starttime").resolved;
-        const endtime = util.getApiSlot(handlerInput, "endtime").resolved;
+        const duration = util.getApiSlot(handlerInput, "duration").resolved;
 
         if (!sessionAttributes["dows"]) {
             sessionAttributes["dows"] = []
@@ -171,7 +171,7 @@ const APIAddDowHandler = {
         sessionAttributes["dows"].push({
             dow: dow,
             starttime: starttime,
-            endtime: endtime
+            duration: duration
         })
 
         let message = ""

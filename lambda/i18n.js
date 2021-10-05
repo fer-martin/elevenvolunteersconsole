@@ -3,9 +3,9 @@ const moment = require('moment-timezone');
 
 const speech = {
 	'es-ES': {
-		'confirm-once': (service, date, starttime, endtime) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D[ de ]MMMM')}, desde las ${moment('2000-01-01T' + starttime).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + endtime).locale('es').format('h A')}.`],
-		'confirm-rec': (service, recurring, since, until) => [`Voy a solicitar un voluntario para ${service} ${recurring}, comenzando el ${moment(since).locale('es').format('dddd, D[ de ]MMMM')}, hasta el ${moment(until).locale('es').format('dddd, D[ de ]MMMM')}.`],
-		'rec-item': (dow, starttime, endtime) => [`los ${dow} de las ${moment('2000-01-01T' + starttime).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + endtime).locale('es').format('h A')}`],
+		'confirm-once': (service, date, time, duration) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D de MMMM')}, desde las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}.`],
+		'confirm-rec': (service, recurring, since, until) => [`Voy a solicitar un voluntario para ${service} ${recurring}, comenzando el ${moment(since).locale('es').format('dddd, D de MMMM')}, hasta el ${moment(until).locale('es').format('dddd, D de MMMM')}.`],
+		'rec-item': (dow, time, duration) => [`los ${dow} de las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}`],
 		'blind-families-only': () => ["este servicio es solamente para familias ciegas."],
 		'service-overlaps': () => [`el servicio se superpone con otro`],
 		'fallback': () => [`No estoy segura. Te puedo ayudar a solicitar un voluntario. ¿que quieres hacer?`],
