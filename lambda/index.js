@@ -47,14 +47,15 @@ const LaunchRequestHandler = {
         const serviceid = util.getApiSlot(handlerInput, "service").id;
         
         let periodicity = util.getApiSlot(handlerInput, "periodicity").id;
-        const simpleinferred = util.getApiSlot(handlerInput, "simpleinferred").resolved
-        const recurringinferred = util.getApiSlot(handlerInput, "recurringinferred").resolved
+        const date = util.getApiSlot(handlerInput, "date").resolved
+        const dow =  util.getApiSlot(handlerInput, "dow").resolved
+        const time = util.getApiSlot(handlerInput, "time").resolved
 
-        if (simpleinferred) {
+        if (date) {
             periodicity = "simple"
-            sessionAttributes["date"] = simpleinferred
+            sessionAttributes["date"] = date
         }
-        if (recurringinferred) {
+        if (dow) {
             periodicity = "recurrente"
             sessionAttributes["dows"] = []        
         }
@@ -64,8 +65,11 @@ const LaunchRequestHandler = {
         sessionAttributes["periodicity"] = periodicity
 
         let params = {
-            status: periodicity,
-            message: ""
+            periodicity: periodicity,
+            service: service,
+            date: date,
+            dow: dow,
+            time: time
         };
 
         return handlerInput.responseBuilder

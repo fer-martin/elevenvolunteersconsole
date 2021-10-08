@@ -7,14 +7,46 @@
         ],
         "item": {
             "type": "Selector",
-            "strategy": "randomItem",
-            "description": "Change 'type' above to try different Selector Component Types like Sequencer",
             "items": [
                 {
-                    "type": "Speech",
-                    "contentType": "text",
-                    "content": "ok",
-                    "description": "Expand on 'items' array to add multiple prompts, use response template arguments by adding it to 'content' like this ${payload.input_argument_name} and add SSML by changing 'contentType' to 'SSML' and adding SSML to 'content' <amazon:effect name=\"whispered\">like that</amazon:effect>"
+                    "type": "Selector",
+                    "when": "${payload.response.periodicity == 'simple'}",
+                    "items": [
+                        {
+                            "type": "Speech",
+                            "when": "${payload.response.date == ''}",
+                            "content": "cuándo?"
+                        },
+                        {
+                            "type": "Speech",
+                            "when": "${payload.response.time == ''}",
+                            "content": "a qué hora?"
+                        },
+                        {
+                            "type": "Speech",
+                            "content": "por cuánto tiempo?"
+                        }
+                    ]
+                },
+                {
+                    "type": "Selector",
+                    "when": "${payload.response.periodicity == 'recurrente'}",
+                    "items": [
+                        {
+                            "type": "Speech",
+                            "when": "${payload.response.dow == ''}",
+                            "content": "en qué día de la semana?"
+                        },
+                        {
+                            "type": "Speech",
+                            "when": "${payload.response.time == ''}",
+                            "content": "a qué hora?"
+                        },
+                        {
+                            "type": "Speech",
+                            "content": "por cuánto tiempo?"
+                        }
+                    ]
                 }
             ]
         }

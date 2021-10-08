@@ -1,6 +1,8 @@
 {
     "version": "0.1",
-    "arguments": {},
+    "arguments": {
+        "response": "PeriodicityResponse"
+    },
     "templates": {
         "prompt": {
             "name": "OkPrompt",
