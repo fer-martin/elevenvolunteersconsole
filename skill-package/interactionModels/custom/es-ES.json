@@ -1,6 +1,6 @@
 {
     "languageModel": {
-        "invocationName": "conversación voluntarios",
+        "invocationName": "spanish skill",
         "intents": [
             {
                 "name": "AMAZON.CancelIntent",
@@ -15,20 +15,25 @@
                 "samples": []
             },
             {
+                "name": "HelloWorldIntent",
+                "slots": [],
+                "samples": [
+                    "hola",
+                    "como estás",
+                    "di hola mundo",
+                    "di hola",
+                    "hola mundo"
+                ]
+            },
+            {
                 "name": "AMAZON.NavigateHomeIntent",
                 "samples": []
             },
             {
-                "name": "AMAZON.FallbackIntent",
-                "samples": []
-            },
-            {
-                "name": "GetRequestedServices",
+                "name": "CustomIntent",
                 "slots": [],
                 "samples": [
-                    "qué voluntarios solicité",
-                    "dime mis solicitudes",
-                    "qué tengo pedido"
+                    "custom intent"
                 ]
             }
         ],
@@ -512,7 +517,12 @@
                                 "en varias ocasiones"
                             ]
                         }
-                    },
+                    }
+                ],
+                "name": "periodicity"
+            },
+            {
+                "values": [
                     {
                         "id": "simple",
                         "name": {
@@ -534,7 +544,7 @@
                         }
                     }
                 ],
-                "name": "periodicity"
+                "name": "once"
             }
         ]
     }
