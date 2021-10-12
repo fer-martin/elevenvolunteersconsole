@@ -297,6 +297,53 @@ const InitRequestInterceptor = {
     process(handlerInput) {
         const i18n = require('./i18n')
         handlerInput.t = (...args) => i18n.response(handlerInput.requestEnvelope.request.locale, ...args);
+
+        handlerInput.responseBuilder.delegateToConversations = function (utteranceSetName, slots) {
+
+            let directive = {
+                "type": "Dialog.DelegateRequest",
+                "target": "AMAZON.Conversations",
+                "period": {
+                   "until": "EXPLICIT_RETURN"
+                },
+                "updatedRequest": {
+                   "type": "Dialog.InputRequest",
+                   "input": {
+                      "name": utteranceSetName
+                   }
+                }
+            }
+
+            if (slots) directive.updatedRequest.input.slots = slots
+
+            handlerInput.responseBuilder.addDirective(directive)
+
+            return handlerInput.responseBuilder
+        }
+
+        handlerInput.responseBuilder.delegateToIntent = function (intentName, slots) {
+
+            let directive = {
+                "type": "Dialog.DelegateRequest",
+                "target": "skill",
+                "period": {
+                   "until": "EXPLICIT_RETURN"
+                },
+                "updatedRequest": {
+                   "type": "IntentRequest",
+                   "intent": {
+                      "name": intentName
+                   }
+                }
+            }
+
+            if (slots) directive.updatedRequest.intent.slots = slots
+
+            handlerInput.responseBuilder.addDirective(directive)
+
+            return handlerInput.responseBuilder
+        }
+
     }
 }
 // The SkillBuilder acts as the entry point for your skill, routing all request and response
