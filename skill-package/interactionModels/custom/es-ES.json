@@ -1,6 +1,6 @@
 {
     "languageModel": {
-        "invocationName": "spanish skill",
+        "invocationName": "conversación voluntarios",
         "intents": [
             {
                 "name": "AMAZON.CancelIntent",
@@ -15,30 +15,22 @@
                 "samples": []
             },
             {
-                "name": "HelloWorldIntent",
-                "slots": [],
-                "samples": [
-                    "hola",
-                    "como estás",
-                    "di hola mundo",
-                    "di hola",
-                    "hola mundo"
-                ]
-            },
-            {
                 "name": "AMAZON.NavigateHomeIntent",
                 "samples": []
             },
             {
-                "name": "CustomIntent",
+                "name": "GetRequestedServices",
                 "slots": [],
                 "samples": [
-                    "custom intent"
+                    "qué voluntarios solicité",
+                    "dime mis solicitudes",
+                    "qué tengo pedido"
                 ]
             }
         ],
         "types": [
             {
+                "name": "service",
                 "values": [
                     {
                         "id": "61000",
@@ -501,10 +493,10 @@
                             ]
                         }
                     }
-                ],
-                "name": "service"
+                ]
             },
             {
+                "name": "periodicity",
                 "values": [
                     {
                         "id": "recurrente",
@@ -518,10 +510,10 @@
                             ]
                         }
                     }
-                ],
-                "name": "periodicity"
+                ]
             },
             {
+                "name": "once",
                 "values": [
                     {
                         "id": "simple",
@@ -543,8 +535,7 @@
                             ]
                         }
                     }
-                ],
-                "name": "once"
+                ]
             }
         ]
     }
