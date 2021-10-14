@@ -91,11 +91,14 @@ const APIValidateArgsOnceHandler = {
         console.log("Api Request [APIValidateArgsOnce]: ", JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
 
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-
+        const service = util.getApiSlot(handlerInput, "service").resolved;
+        const serviceid = util.getApiSlot(handlerInput, "service").id;
         const date = util.getApiSlot(handlerInput, "date").resolved;
         const starttime = util.getApiSlot(handlerInput, "starttime").resolved;
         const duration = util.getApiSlot(handlerInput, "duration").resolved;
-
+        
+        sessionAttributes["service"] = service
+        sessionAttributes["serviceid"] = serviceid
         sessionAttributes["date"] = date
         sessionAttributes["starttime"] = starttime
         sessionAttributes["duration"] = duration
@@ -164,9 +167,14 @@ const APIAddDowHandler = {
 
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
+        const service = util.getApiSlot(handlerInput, "service").resolved;
+        const serviceid = util.getApiSlot(handlerInput, "service").id;
         const dow = util.getApiSlot(handlerInput, "dow").resolved;
         const starttime = util.getApiSlot(handlerInput, "starttime").resolved;
         const duration = util.getApiSlot(handlerInput, "duration").resolved;
+
+        sessionAttributes["service"] = service
+        sessionAttributes["serviceid"] = serviceid
 
         if (!sessionAttributes["dows"]) {
             sessionAttributes["dows"] = []

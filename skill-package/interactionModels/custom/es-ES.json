@@ -30,7 +30,6 @@
         ],
         "types": [
             {
-                "name": "service",
                 "values": [
                     {
                         "id": "61000",
@@ -38,49 +37,11 @@
                             "value": "acompañamiento",
                             "synonyms": [
                                 "un acompañante",
-                                "acompañante",
                                 "que me venga a buscar alguien",
                                 "que me acompañen",
-                                "no puedo ir solo a mi casa",
-                                "no puedo ir solo a la estación de autobus",
-                                "no puedo ir solo a la estación de tren",
-                                "no puedo ir solo a la residencia",
                                 "que me recojan en mi casa",
-                                "que me recojan en la estación de autobus",
-                                "que me recojan en la estación de tren",
-                                "que me recojan en la residencia",
-                                "que me recoja alguien en la estación de autobús",
-                                "que me recoja alguien en la estación de tren",
-                                "que me recoja alguien en mi casa",
-                                "que me recoja alguien en la residencia",
-                                "que venga conmigo un voluntario",
-                                "que vaya conmigo un voluntario",
-                                "que me acompañe un voluntario",
-                                "que vengan conmigo a pasear",
-                                "paseo",
-                                "ir de paseo",
-                                "pasear",
-                                "paseos",
-                                "hacer paseos",
-                                "que vengan conmigo al médico",
-                                "que vengan conmigo a un recado",
-                                "que me apoyen en este recorrido",
-                                "que vengan conmigo a hacer unas gestiones",
-                                "que vengan conmigo para ir a la once",
-                                "mi hijo no puede acompañarme porque trabaja",
-                                "mi hija no puede acompañarme porque trabaja",
-                                "mi marido no puede acompañarme porque trabaja",
-                                "mi esposa no puede acompañarme porque trabaja",
-                                "mi mujer no puede acompañarme porque trabaja",
-                                "mi hijo no puede acompañarme",
-                                "mi hija no puede acompañarme",
-                                "mi marido no puede acompañarme",
-                                "mi esposa no puede acompañarme",
-                                "mi mujer no puede acompañarme",
-                                "ir al médico",
-                                "que me acompañen a hacer una gestión",
-                                "que vengan conmigo a hacer una gestión",
-                                "hacer una gestión"
+                                "que me recojan",
+                                "que me acompañe un voluntario"
                             ]
                         }
                     },
@@ -97,20 +58,7 @@
                                 "que se comuniquen conmigo por teléfono",
                                 "que se comuniquen conmigo por móvil",
                                 "charlar",
-                                "charlar con alguien",
-                                "me siento solo",
-                                "me siento sola",
-                                "hablar",
-                                "hablar con alguien",
-                                "estoy solo",
-                                "estoy sola",
-                                "el día se hace muy largo",
-                                "ya no puedo salir y en casa no sé qué hacer",
-                                "no puedo salir de casa y ya no sé qué hacer",
-                                "me gustaría hablar con alguien que entienda por lo que estoy pasando",
-                                "te haces viejo y te quedas solo",
-                                "en el pueblo no hay nadie",
-                                "no hay nada peor que perder la vista"
+                                "charlar con alguien"
                             ]
                         }
                     },
@@ -119,27 +67,11 @@
                         "name": {
                             "value": "perros guía",
                             "synonyms": [
-                                "subprograma perro guía",
-                                "subprograma perros guía",
                                 "perro guía",
                                 "perro",
                                 "perros",
-                                "necesito un perro guía",
-                                "necesito un perro",
-                                "necesito perros",
-                                "quiero un perro guía",
-                                "quiero un perro",
-                                "quiero perros",
-                                "pasear con el perro",
-                                "salir con el perro",
-                                "pasear con el perro guía",
-                                "salir con el perro guía",
-                                "que me acompañen a sacar al perro",
-                                "necesito ir al parque con perro",
-                                "necesito que me acompañen a sacar al perro",
-                                "quiero ir al parque con perro",
-                                "quiero que me acompañen a sacar al perro",
-                                "ir al parque con perro"
+                                "un perro guía",
+                                "un perro"
                             ]
                         }
                     },
@@ -267,104 +199,69 @@
                         "name": {
                             "value": "cultural recreativo",
                             "synonyms": [
-                                "cultura",
-                                "cultural",
-                                "recreativo",
-                                "recreación",
-                                "museo",
                                 "ir al museo",
                                 "visitar el museo",
-                                "museos",
                                 "ir a museos",
                                 "visitar museos",
-                                "exposición",
                                 "ir a una exposición",
                                 "ir a la exposición",
                                 "visitar una exposición",
                                 "visitar la exposición",
-                                "exposiciones",
                                 "ir a exposiciones",
                                 "visitar exposiciones",
                                 "ir a exposiciones",
-                                "excursión",
                                 "ir a una excursión",
                                 "ir de excursión",
-                                "excursiones",
                                 "ir a excursiones",
                                 "ir de excursiones",
-                                "conferencia",
                                 "ir a una conferencia",
                                 "visitar una conferencia",
-                                "conferencias",
                                 "ir a conferencias",
                                 "visitar conferencias",
-                                "visita cultural",
                                 "ir a una visita cultural",
-                                "visitas culturales",
                                 "ir a visitas culturales",
-                                "aire libre",
                                 "ir al aire libre",
                                 "estar al aire libre",
                                 "salir al aire libre",
-                                "teatro",
                                 "ir al teatro",
                                 "visitar el teatro",
-                                "teatros",
                                 "ir a teatros",
                                 "visitar teatros",
-                                "cine",
                                 "ir al cine",
                                 "visitar el cine",
-                                "cines",
                                 "ir a cines",
                                 "visitar cines",
-                                "espectáculo",
                                 "ir a un espectáculo",
                                 "visitar un espectáculo",
-                                "espectáculos",
                                 "ir a espectáculos",
                                 "visitar espectáculos",
-                                "evento deportivo",
                                 "ir a un evento deportivo",
                                 "visitar un evento deportivo",
-                                "eventos deportivos",
                                 "ir a eventos deportivos",
                                 "visitar eventos deportivos",
-                                "actividad sociocultural",
                                 "ir a una actividad sociocultural",
                                 "visitar una actividad sociocultural",
-                                "actividades socioculturales",
                                 "ir a actividades socioculturales",
                                 "visitar actividades socioculturales",
-                                "actividad de animación",
                                 "ir a una actividad de animación",
                                 "realizar una actividad de animación",
-                                "actividades de animación",
                                 "ir a actividades de animación",
                                 "visitar actividades de animación",
                                 "realizar actividades de animación",
-                                "visita",
                                 "ir a una visita",
                                 "hacer una visita",
-                                "visitas",
                                 "ir a visitas",
                                 "hacer visitas",
-                                "concierto",
                                 "ir a un concierto",
                                 "visitar un concierto",
-                                "conciertos",
                                 "ir a conciertos",
                                 "visitar conciertos",
-                                "senderismo",
                                 "ir a senderismo",
                                 "hacer senderismo",
-                                "senderismos",
                                 "ir a senderismos",
                                 "hacer senderismos",
-                                "taller",
                                 "ir a un taller",
                                 "visitar un taller",
-                                "talleres",
                                 "ir a talleres",
                                 "visitar talleres"
                             ]
@@ -376,8 +273,6 @@
                             "value": "apoyo a familias",
                             "synonyms": [
                                 "apoyo familiar",
-                                "familias",
-                                "familiar",
                                 "salir con mis hijos",
                                 "salir con mi familia",
                                 "apoyo",
@@ -390,33 +285,15 @@
                                 "somos una pareja de ciegos",
                                 "somos un matrimonio ambos ciegos",
                                 "somos una pareja ambos ciegos",
-                                "paseos familiares",
                                 "hacer paseos familiares",
-                                "queremos hacer paseos familiares",
-                                "parque de atracciones",
-                                "para ir al parque de atracciones",
                                 "ir al parque de atracciones",
-                                "para visitar el parque de atracciones",
-                                "quiero ir al parque de atracciones",
-                                "quiero visitar el parque de atracciones",
-                                "campo",
-                                "para ir al campo",
+                                "visitar el parque de atracciones",
                                 "ir al campo",
-                                "para visitar el campo",
-                                "quiero ir al campo",
-                                "quiero visitar el campo",
-                                "zoo",
-                                "para ir al zoo",
+                                "visitar el campo",
                                 "ir al zoo",
-                                "para visitar el zoo",
-                                "quiero ir al zoo",
-                                "quiero visitar el zoo",
-                                "zoológico",
-                                "para ir al zoológico",
+                                "visitar el zoo",
                                 "ir al zoológico",
-                                "para visitar el zoológico",
-                                "quiero ir al zoológico",
-                                "quiero visitar el zoológico"
+                                "visitar el zoológico"
                             ]
                         }
                     },
@@ -425,15 +302,6 @@
                         "name": {
                             "value": "deportivo",
                             "synonyms": [
-                                "deportes",
-                                "footing",
-                                "patinaje",
-                                "patinar",
-                                "vela",
-                                "correr",
-                                "running",
-                                "fútbol",
-                                "goalball",
                                 "hacer deportes",
                                 "ir a hacer deportes",
                                 "hacer footing",
@@ -493,10 +361,10 @@
                             ]
                         }
                     }
-                ]
+                ],
+                "name": "service"
             },
             {
-                "name": "periodicity",
                 "values": [
                     {
                         "id": "recurrente",
@@ -510,10 +378,10 @@
                             ]
                         }
                     }
-                ]
+                ],
+                "name": "periodicity"
             },
             {
-                "name": "once",
                 "values": [
                     {
                         "id": "simple",
@@ -535,7 +403,8 @@
                             ]
                         }
                     }
-                ]
+                ],
+                "name": "once"
             }
         ]
     }
