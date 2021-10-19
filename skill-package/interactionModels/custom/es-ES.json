@@ -1,6 +1,6 @@
 {
     "languageModel": {
-        "invocationName": "conversación voluntarios",
+        "invocationName": "conversación once",
         "intents": [
             {
                 "name": "AMAZON.CancelIntent",
