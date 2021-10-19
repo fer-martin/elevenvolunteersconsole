@@ -3,7 +3,9 @@ const moment = require('moment-timezone');
 
 const speech = {
 	'es-ES': {
-		'confirm-once': (service, date, time, duration) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D[ de ]MMMM')}, desde las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}.`],
+		'account-not-linked': () => [`Para poder disfrutar de esta skill es necesario vincular su cuenta. Le he enviado el vínculo para hacerlo a su dispositivo móvil. Por favor, utilícelo para ingresar al Club ONCE con su usuario y contraseña y otorgar los permisos a ésta skill.`],
+
+		'confirm-once': (service, date, time, endtime) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D[ de ]MMMM')}, desde las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + endtime).locale('es').format('h A')}.`],
 		'confirm-rec': (service, recurring, since, until) => [`Voy a solicitar un voluntario para ${service} ${recurring}, comenzando el ${moment(since).locale('es').format('dddd, D[ de ]MMMM')}, hasta el ${moment(until).locale('es').format('dddd, D[ de ]MMMM')}.`],
 		'rec-item': (dow, time, duration) => [`los ${dow} de las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}`],
 		'blind-families-only': () => ["este servicio es solamente para familias ciegas."],
@@ -11,6 +13,11 @@ const speech = {
 		'fallback': () => [`No estoy segura. Te puedo ayudar a solicitar un voluntario. ¿que quieres hacer?`],
 		'error': () => [`Lo siento, he tenido un problema. Prueba nuevamente.`],
 		'welcome': () => [`Te damos la bienvenida.`],
+
+		'timeout-transact': () => ["La operación ha demorado demasiado, pero es posible que se haya podido ingresar la solicitud. Por favor, espere unos instantes y consulte las solicitudes pendientes diciendo 'Alexa, dime mis solicitudes'. Si su solicitud no ha sido ingresada, inténtelo nuevamente."],
+		'timeout': (serv) => [`La ${serv} ha demorado demasiado. Pruebe por favor nuevamente en unos instantes.`],
+		'solicitud-denegada': () => [`No se ha podido registrar la solicitud.`],
+		'error-ws': () => ["Ha ocurrido un error durante la consulta al sistema de gestión."],
 	}
 }
 
