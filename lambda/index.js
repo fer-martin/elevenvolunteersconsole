@@ -165,6 +165,20 @@ const APIValidateArgsRecurringHandler = {
             message: message
         };
 
+        //Chequeamos fecha desde y hasta, y +90 días
+        if (!moment(datesince).isAfter()) {
+            params.status = 1
+            params.message = "la fecha de inicio no puede ser anterior a hoy."
+        }
+        if (!moment(dateuntil).isAfter(moment(datesince))) {
+            params.status = 2
+            params.message = "la fecha de finalización no puede ser anterior a la de inicio."
+        }
+        if (moment(dateuntil).isAfter(moment(datesince).add(90, 'days'))) {
+            params.status = 2
+            params.message = "la fecha de finalización no puede ser más de 90 días después del inicio."
+        }
+
         return handlerInput.responseBuilder
             .withApiResponse(params)
             .withShouldEndSession(false)
@@ -776,11 +790,11 @@ function selectServiciosBeneficiario(handlerInput) {
                     }
                 })
                 if (data.length) {
-                    resolve({ status: 0, message: `Tiene ${data.length} servicio${data.length!=1?"s":""} activo${data.length!=1?"s":""}.`, data: data });
+                    resolve({ status: 0, message: `Tiene ${data.length} servicio${data.length != 1 ? "s" : ""} activo${data.length != 1 ? "s" : ""}.`, data: data });
                 } else {
                     resolve({ status: 0, message: "No tiene servicios activos", data: data });
                 }
-                
+
             })
             .catch((error) => {
                 console.error(error)
