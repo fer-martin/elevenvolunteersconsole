@@ -5,9 +5,9 @@ const speech = {
 	'es-ES': {
 		'account-not-linked': () => [`Para poder disfrutar de esta skill es necesario vincular su cuenta. Le he enviado el vínculo para hacerlo a su dispositivo móvil. Por favor, utilícelo para ingresar al Club ONCE con su usuario y contraseña y otorgar los permisos a ésta skill.`],
 
-		'confirm-once': (service, date, time, endtime) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D[ de ]MMMM')}, desde las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + endtime).locale('es').format('h A')}.`],
+		'confirm-once': (service, date, time, endtime) => [`Voy a solicitar un voluntario para ${service} el ${moment(date).locale('es').format('dddd D[ de ]MMMM')}, desde las ${moment('2000-01-01T' + time).locale('es').format('h:mm A')} hasta las ${moment('2000-01-01T' + endtime).locale('es').format('h:mm A')}.`],
 		'confirm-rec': (service, recurring, since, until) => [`Voy a solicitar un voluntario para ${service} ${recurring}, comenzando el ${moment(since).locale('es').format('dddd, D[ de ]MMMM')}, hasta el ${moment(until).locale('es').format('dddd, D[ de ]MMMM')}.`],
-		'rec-item': (dow, time, duration) => [`los ${dow} de las ${moment('2000-01-01T' + time).locale('es').format('h A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h A')}`],
+		'rec-item': (dow, time, duration) => [`los ${dow} de las ${moment('2000-01-01T' + time).locale('es').format('h:mm A')} hasta las ${moment('2000-01-01T' + time).add(moment.duration(duration)).locale('es').format('h:mm A')}`],
 		'blind-families-only': () => ["este servicio es solamente para familias ciegas."],
 		'service-overlaps': () => [`el servicio se superpone con otro`],
 		'fallback': () => [`No estoy segura. Te puedo ayudar a solicitar un voluntario. ¿que quieres hacer?`],
