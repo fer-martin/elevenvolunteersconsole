@@ -13,6 +13,16 @@
                     "type": "Speech",
                     "contentType": "text",
                     "content": "por única vez o recurrente?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "quieres el servicio por única vez o recurrente?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "necesitas el voluntario por única vez o recurrente?"
                 }
             ]
         }

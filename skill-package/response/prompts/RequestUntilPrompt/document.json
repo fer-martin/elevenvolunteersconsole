@@ -6,12 +6,18 @@
             "payload"
         ],
         "item": {
-            "type": "Sequencer",
+            "type": "Selector",
+            "strategy": "randomItem",
             "items": [
                 {
                     "type": "Speech",
                     "contentType": "text",
                     "content": "hasta qué día?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "hasta qué fecha?"
                 }
             ]
         }

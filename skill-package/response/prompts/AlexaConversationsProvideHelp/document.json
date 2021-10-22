@@ -12,7 +12,7 @@
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "content": "Te puedo ayudar a conseguir un voluntario, solo di \"necesito un voluntario\"."
+                    "content": "Para consultar las solicitudes pendientes di, dime mis solicitudes. para conocer los programas y subprogramas disponibles di, qué servicios puedo solicitar. Para solicitar un voluntario di, necesito un voluntario. ¿Cómo puedo ayudarte?"
                 }
             ]
         }

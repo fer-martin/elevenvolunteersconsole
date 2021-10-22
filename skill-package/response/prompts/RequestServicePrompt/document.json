@@ -15,7 +15,17 @@
                         {
                             "type": "Speech",
                             "contentType": "text",
-                            "content": "qué servicio necesita?"
+                            "content": "qué servicio necesitas?"
+                        },
+                        {
+                            "type": "Speech",
+                            "contentType": "text",
+                            "content": "para qué necesitas el voluntario?"
+                        },
+                        {
+                            "type": "Speech",
+                            "contentType": "text",
+                            "content": "qué ayuda necesitas?"
                         }
                     ]
                 }

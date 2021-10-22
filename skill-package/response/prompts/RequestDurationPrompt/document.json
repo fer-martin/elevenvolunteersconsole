@@ -16,6 +16,11 @@
                             "type": "Speech",
                             "contentType": "text",
                             "content": "por cuánto tiempo?"
+                        },
+                        {
+                            "type": "Speech",
+                            "contentType": "text",
+                            "content": "por cuánto tiempo lo necesitas?"
                         }
                     ]
                 }

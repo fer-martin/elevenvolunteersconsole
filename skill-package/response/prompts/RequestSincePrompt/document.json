@@ -6,12 +6,33 @@
             "payload"
         ],
         "item": {
-            "type": "Sequencer",
+            "type": "Selector",
+            "strategy": "randomItem",
             "items": [
                 {
                     "type": "Speech",
                     "contentType": "text",
                     "content": "desde qué día?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "desde qué fecha necesitas el servicio?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "desde qué fecha necesitas el voluntario?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "desde qué día necesitas el servicio?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "desde qué día necesitas el voluntario?"
                 }
             ]
         }

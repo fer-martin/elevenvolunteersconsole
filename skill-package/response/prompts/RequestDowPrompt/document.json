@@ -6,12 +6,23 @@
             "payload"
         ],
         "item": {
-            "type": "Sequencer",
+            "type": "Selector",
+            "strategy": "randomItem",
             "items": [
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "content": "qué día de la semana?"
+                    "content": "en qué día de la semana?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "qué día de la semana quieres el voluntario?"
+                },
+                {
+                    "type": "Speech",
+                    "contentType": "text",
+                    "content": "qué día de la semana lo quieres?"
                 }
             ]
         }

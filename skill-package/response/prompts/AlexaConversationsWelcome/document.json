@@ -12,7 +12,7 @@
                 {
                     "type": "Speech",
                     "contentType": "text",
-                    "content": "Te damos la bienvenida a la skill de voluntarios. ¿Cómo puedo ayudarte?"
+                    "content": "te damos la bienvenida. gracias por participar en la prueba beta de ésta skill. Para consultar las solicitudes pendientes di, dime mis solicitudes. para conocer los programas y subprogramas disponibles di, qué servicios puedo solicitar. para solicitar un voluntario di, necesito un voluntario. ¿Cómo puedo ayudarte?"
                 }
             ]
         }

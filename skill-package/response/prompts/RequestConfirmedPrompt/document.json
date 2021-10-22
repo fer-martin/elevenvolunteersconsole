@@ -32,6 +32,12 @@
                 },
                 {
                     "type": "Speech",
+                    "when": "${payload.statusResponse.status == 0}",
+                    "contentType": "text",
+                    "content": "Se ha registrado tu solicitud. Nos pondremos en contacto telefónicamente contigo."
+                },
+                {
+                    "type": "Speech",
                     "when": "${payload.statusResponse.status != 0}",
                     "contentType": "text",
                     "content": " ${payload.statusResponse.message}"

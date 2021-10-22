@@ -16,6 +16,21 @@
                             "type": "Speech",
                             "contentType": "text",
                             "content": "en qué día?"
+                        },
+                        {
+                            "type": "Speech",
+                            "contentType": "text",
+                            "content": "para qué día?"
+                        },
+                        {
+                            "type": "Speech",
+                            "contentType": "text",
+                            "content": "qué día quieres el voluntario?"
+                        },
+                        {
+                            "type": "Speech",
+                            "contentType": "text",
+                            "content": "qué día lo quieres?"
                         }
                     ]
                 }
