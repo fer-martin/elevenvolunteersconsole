@@ -292,6 +292,49 @@ const APIServicesHandler = {
             )
     }
 }
+
+const APIServicesHelpHandler = {
+    canHandle(handlerInput) {
+        return util.isApiRequest(handlerInput, 'APIServicesHelp');
+    },
+    handle(handlerInput) {
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+        console.log("Api Request [APIServicesHelp]: ", JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
+
+        let response = {
+            status: 0,
+            message: "",
+            data: []
+        };
+
+        //Primero chequeamos que tenga el token y si no volvemos con error de falta de token
+        if (!handlerInput.requestEnvelope.context.System.user.accessToken) {
+            response.status = 1
+            response.message = handlerInput.t('account-not-linked')
+            return handlerInput.responseBuilder
+                .withApiResponse(response)
+                .withLinkAccountCard()
+                .withShouldEndSession(false)
+                .getResponse();
+        }
+        response.data = [
+            "acompañamiento",
+            "acompañamiento telefónico",
+            "perros guía",
+            "acceso a la información",
+            "tiflotécnica",
+            "voluntariado digital",
+            "cultural recreativo",
+            "apoyo a familias",
+            "deportivo",
+        ]
+        
+        return handlerInput.responseBuilder
+            .withApiResponse(response)
+            .withShouldEndSession(false)
+            .getResponse()
+    }
+}
 /**
  * FallbackIntentHandler - Handle all other requests to the skill
  *
@@ -1036,6 +1079,7 @@ skillBuilder
         APIValidateArgsRecurringHandler,
         APIRequestVolunteerHandler,
         APIServicesHandler,
+        APIServicesHelpHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler
     )

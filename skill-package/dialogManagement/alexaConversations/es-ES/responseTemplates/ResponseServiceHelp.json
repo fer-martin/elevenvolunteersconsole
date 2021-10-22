@@ -1,0 +1,16 @@
+{
+    "version": "0.1",
+    "arguments": {
+        "statusResponse": "StatusResponseData"
+    },
+    "templates": {
+        "prompt": {
+            "name": "ServiceHelpPrompt",
+            "type": "APL-A"
+        },
+        "reprompt": null,
+        "display": null
+    },
+    "situations": [],
+    "etag": ""
+}
