@@ -114,6 +114,7 @@ const APIValidateArgsOnceHandler = {
         sessionAttributes["date"] = date
         sessionAttributes["starttime"] = starttime
         sessionAttributes["endtime"] = endtime
+        sessionAttributes["periodicity"] = "simple"
 
         let message = handlerInput.t('confirm-once', sessionAttributes["service"], date, starttime, endtime)
 
@@ -147,10 +148,11 @@ const APIValidateArgsRecurringHandler = {
 
         sessionAttributes["date"] = datesince
         sessionAttributes["dateuntil"] = dateuntil
+        sessionAttributes["periodicity"] = "recurrente"
 
         let recurring = sessionAttributes["dows"].map(e =>
             handlerInput.t('rec-item', e.dow, e.starttime, e.duration)
-        ).join(" and ")
+        ).join(" y ")
 
         let message = handlerInput.t('confirm-rec', sessionAttributes["service"], recurring, datesince, dateuntil)
 
