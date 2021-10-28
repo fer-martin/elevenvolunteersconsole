@@ -178,6 +178,7 @@
                 "date": "AMAZON.DATE"
             },
             "formatters": [
+                "necesito un voluntario para ${date}",
                 "quiero un voluntario el ${date}",
                 "necesito un voluntario el ${date}"
             ],
@@ -330,7 +331,9 @@
                 "pide un ${service} los ${dow}",
                 "pide un voluntario con un ${service} los ${dow}",
                 "pide un ${service} todos los ${dow}",
-                "pide un voluntario para ${service} todos los ${dow}"
+                "pide un voluntario para ${service} todos los ${dow}",
+                "${service} todos los ${dow}",
+                "${service} los ${dow}"
             ],
             "dialogAct": "invoke",
             "api": null
@@ -342,6 +345,7 @@
                 "time": "AMAZON.TIME"
             },
             "formatters": [
+                "necesito un voluntario para ${service} el ${date} a las ${time}",
                 "preciso un voluntario para ${service} ${date} a las ${time}",
                 "quiero ${service} ${date} a las ${time}",
                 "pide un voluntario para ${service} el ${date} a las ${time}",
@@ -392,6 +396,7 @@
                 "service": "service"
             },
             "formatters": [
+                "${service}",
                 "pídeme un ${service}",
                 "necesito ${service}",
                 "necesito un ${service}",
@@ -444,6 +449,7 @@
                 "date": "AMAZON.DATE"
             },
             "formatters": [
+                "el ${date}",
                 "para el ${date}",
                 "para ${date}",
                 "${date}"
@@ -456,6 +462,7 @@
                 "service": "service"
             },
             "formatters": [
+                "quiero ${service}",
                 "un ${service}",
                 "para ${service}",
                 "${service}",
