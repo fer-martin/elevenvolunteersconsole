@@ -30,7 +30,6 @@
         ],
         "types": [
             {
-                "name": "service",
                 "values": [
                     {
                         "id": "61000",
@@ -428,10 +427,10 @@
                             ]
                         }
                     }
-                ]
+                ],
+                "name": "service"
             },
             {
-                "name": "periodicity",
                 "values": [
                     {
                         "id": "recurrente",
@@ -445,10 +444,10 @@
                             ]
                         }
                     }
-                ]
+                ],
+                "name": "periodicity"
             },
             {
-                "name": "once",
                 "values": [
                     {
                         "id": "simple",
@@ -470,7 +469,8 @@
                             ]
                         }
                     }
-                ]
+                ],
+                "name": "once"
             }
         ]
     }
