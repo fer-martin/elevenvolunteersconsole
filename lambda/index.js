@@ -42,54 +42,6 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 }
-/**
- * API Handler for Check Params
- */
-const APIPeriodicityHandler = {
-    canHandle(handlerInput) {
-        return util.isApiRequest(handlerInput, 'APIPeriodicity');
-    },
-    handle(handlerInput) {
-        console.log("Api Request [APIPeriodicity]: ", JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
-
-        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-
-        const service = util.getApiSlot(handlerInput, "service").resolved;
-        const serviceid = util.getApiSlot(handlerInput, "service").id;
-
-        let periodicity = util.getApiSlot(handlerInput, "periodicity").id;
-        const date = util.getApiSlot(handlerInput, "date").resolved
-        const dow = util.getApiSlot(handlerInput, "dow").resolved
-        const time = util.getApiSlot(handlerInput, "time").resolved
-
-        if (date) {
-            periodicity = "simple"
-            sessionAttributes["date"] = date
-        }
-        if (dow) {
-            periodicity = "recurrente"
-            sessionAttributes["dows"] = []
-        }
-
-        sessionAttributes["service"] = service
-        sessionAttributes["serviceid"] = serviceid
-        sessionAttributes["periodicity"] = periodicity
-
-        let params = {
-            periodicity: periodicity,
-            service: service,
-            date: date,
-            dow: dow,
-            time: time
-        };
-
-        return handlerInput.responseBuilder
-            .withApiResponse(params)
-            .withShouldEndSession(false)
-            .getResponse();
-    }
-}
-
 
 /**
  * API Handler for Check Params
@@ -1093,7 +1045,6 @@ skillBuilder
     .addResponseInterceptors(LogResponseInterceptor)
     .addRequestHandlers(
         LaunchRequestHandler,
-        APIPeriodicityHandler,
         APIValidateArgsOnceHandler,
         APIAddDowHandler,
         APIValidateArgsRecurringHandler,

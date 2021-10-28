@@ -444,11 +444,11 @@ A: el voluntario ha sido solicitado
 {start}
 U: necesito un voluntario para [pasado mañana|AMAZON.DATE -> date0]
 U: { userNlg: USetRequestVolunteer5(date=$date0) }
-A: { nlg: request(api=APIPeriodicity, [{response=RequestServiceResponse(),arguments=[service]}]) }
+A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestServiceResponse(),arguments=[service]}]) }
 A: para qué servicio?
 U: [acompañamiento|service -> service0]
 U: { userNlg: USetInformService(service=$service0) }
-A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestServiceResponse(),arguments=[service]}]) }
+A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: ok. a qué hora?
 U: a las [cinco de la tarde|AMAZON.TIME -> time0]
 U: { userNlg: USetInformTime(time=$time0) }
