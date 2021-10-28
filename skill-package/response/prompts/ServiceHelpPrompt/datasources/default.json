@@ -1,1 +1,17 @@
-{}
+{
+    "statusResponse": {
+        "status": 0,
+        "message": "",
+        "data": [
+            "acompañamiento",
+            "acompañamiento telefónico",
+            "perros guía",
+            "acceso a la información",
+            "tiflotécnica",
+            "voluntariado digital",
+            "cultural recreativo",
+            "apoyo a familias",
+            "deportivo"
+        ]
+    }
+}

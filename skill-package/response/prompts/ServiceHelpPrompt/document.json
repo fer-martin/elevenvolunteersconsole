@@ -17,7 +17,7 @@
                     "type": "Sequencer",
                     "when": "${payload.statusResponse.data.length > 0}",
                     "data": "${payload.statusResponse.data}",
-                    "item": [
+                    "items": [
                         {
                             "type": "Speech",
                             "contentType": "SSML",
