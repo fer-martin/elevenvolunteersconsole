@@ -495,7 +495,7 @@ function altaServicioAlexa(handlerInput) {
     const horadesde = sessionAttributes["starttime"]
     const horahasta = sessionAttributes["endtime"]
     const repeticion = sessionAttributes["periodicity"]
-    const periodico_dias = sessionAttributes["dow"]
+    const periodico_dias = sessionAttributes["dows"]
 
     console.log(`ENVIO AL WEBSERVICE altaServicioAlexa`);
 
