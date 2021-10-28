@@ -30,6 +30,7 @@
         ],
         "types": [
             {
+                "name": "service",
                 "values": [
                     {
                         "id": "61000",
@@ -137,9 +138,7 @@
                             "synonyms": [
                                 "perro guía",
                                 "perro",
-                                "perros",
-                                "un perro guía",
-                                "un perro"
+                                "perros"
                             ]
                         }
                     },
@@ -429,10 +428,10 @@
                             ]
                         }
                     }
-                ],
-                "name": "service"
+                ]
             },
             {
+                "name": "periodicity",
                 "values": [
                     {
                         "id": "recurrente",
@@ -446,10 +445,10 @@
                             ]
                         }
                     }
-                ],
-                "name": "periodicity"
+                ]
             },
             {
+                "name": "once",
                 "values": [
                     {
                         "id": "simple",
@@ -471,8 +470,7 @@
                             ]
                         }
                     }
-                ],
-                "name": "once"
+                ]
             }
         ]
     }
