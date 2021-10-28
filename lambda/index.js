@@ -300,9 +300,7 @@ const APIServicesHelpHandler = {
         
         return handlerInput.responseBuilder
             .withApiResponse(response)
-            .addDirective({
-                'type': "Conversations.ResetContext"
-            })
+            .resetContext()
             .withShouldEndSession(false)
             .getResponse()
     }
@@ -377,6 +375,17 @@ const InitRequestInterceptor = {
     process(handlerInput) {
         const i18n = require('./i18n')
         handlerInput.t = (...args) => i18n.response(handlerInput.requestEnvelope.request.locale, ...args);
+
+        handlerInput.responseBuilder.resetContext = function () {
+
+            let directive = {
+                "type": "Conversations.ResetContext"
+            }
+
+            handlerInput.responseBuilder.addDirective(directive)
+
+            return handlerInput.responseBuilder
+        }
 
         handlerInput.responseBuilder.delegateToConversations = function (utteranceSetName, slots) {
 
