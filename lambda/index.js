@@ -348,6 +348,9 @@ const APIServicesHelpHandler = {
         
         return handlerInput.responseBuilder
             .withApiResponse(response)
+            .addDirective({
+                'type': "Conversations.ResetContext"
+            })
             .withShouldEndSession(false)
             .getResponse()
     }
