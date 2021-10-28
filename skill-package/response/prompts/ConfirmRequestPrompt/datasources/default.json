@@ -1,1 +1,6 @@
-{}
+{
+    "statusResponse": {
+        "status": 1,
+        "message": "la fecha de inicio no puede ser anterior a hoy."
+    }
+}
