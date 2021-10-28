@@ -360,7 +360,9 @@ const ErrorHandler = {
 
 const LogRequestInterceptor = {
     process(handlerInput) {
-        console.log(`Request: ${handlerInput.requestEnvelope.request.type} ${handlerInput.requestEnvelope.request.type == "IntentRequest" ? handlerInput.requestEnvelope.request.intent.name : ""}`);
+        let session = handlerInput.requestEnvelope.session.sessionId || ""
+        session = session.split("-").pop()
+        console.log(`Request: ${handlerInput.requestEnvelope.request.type} ${handlerInput.requestEnvelope.request.type == "IntentRequest" ? handlerInput.requestEnvelope.request.intent.name : ""} ${session}`);
         console.log(`REQUEST ENVELOPE = ${JSON.stringify(handlerInput.requestEnvelope)}`);
     },
 };
