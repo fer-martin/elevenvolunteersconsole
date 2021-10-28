@@ -334,15 +334,16 @@ const APIServicesHelpHandler = {
                 .getResponse();
         }
         response.data = [
-            "acompañamiento",
-            "acompañamiento telefónico",
-            "perros guía",
-            "acceso a la información",
-            "tiflotécnica",
-            "voluntariado digital",
-            "cultural recreativo",
-            "apoyo a familias",
-            "deportivo",
+            "<s>acompañamiento</s>",
+            "<s>acompañamiento telefónico</s>",
+            "<s>perros guía</s>",
+            "<s>acceso a la información</s>",
+            "<s>tiflotécnica</s>",
+            "<s>voluntariado digital</s>",
+            "<s>cultural recreativo</s>",
+            "<s>apoyo a familias</s>",
+            "<s>deportivo</s>",
+            "<s>qué servicio deseas solicitar?</s>"
         ]
         
         return handlerInput.responseBuilder
