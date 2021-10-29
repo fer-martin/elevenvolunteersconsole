@@ -728,7 +728,7 @@ A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestDurationResponse(),
 A: por cuánto tiempo
 U: [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
-A: { call: APIValidateArgsOnce(duration=$duration0, date=$date0, starttime=$starttime0, service=$service0, once=$singleService0) -> statusResponse0 HAVING ${statusResponse2.status == 3} }
+A: { call: APIValidateArgsOnce(duration=$duration0, date=$date0, starttime=$starttime0, service=$service0, once=$singleService0) -> statusResponse0 HAVING ${statusResponse0.status == 3} }
 A: { nlg: notifyFailure(api=APIValidateArgsOnce, response=ConfirmRequestResponse(statusResponse=$statusResponse0)) }
 A: { nlg: requestAlternative(response=ConfirmRequestResponse(statusResponse=$statusResponse0), arguments=[service]) }
 A: El servicio es inválido. qué servicio quiere?
