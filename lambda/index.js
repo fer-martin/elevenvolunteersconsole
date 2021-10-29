@@ -68,14 +68,22 @@ const APIValidateArgsOnceHandler = {
         sessionAttributes["endtime"] = endtime
         sessionAttributes["periodicity"] = "simple"
 
+        let status = 0
         let message = handlerInput.t('confirm-once', sessionAttributes["service"], date, starttime, endtime)
 
         if (sessionAttributes["serviceid"] == "65100") {
             message += handlerInput.t('blind-families-only')
         }
 
+        //si me viene un servicio invalido (no tiene ID)
+        if (!sessionAttributes["serviceid"]) {
+            status = 3
+            message = `El servicio ${service} no existe.`
+        }
+
+
         let params = {
-            status: 0,
+            status: status,
             message: message
         };
 
@@ -169,9 +177,16 @@ const APIAddDowHandler = {
         })
 
         let message = ""
+        let status = 0
+
+        //si me viene un servicio invalido (no tiene ID)
+        if (!sessionAttributes["serviceid"]) {
+            status = 3
+            message = `El servicio ${service} no existe.`
+        }
 
         let params = {
-            status: 0,
+            status: status,
             message: message
         };
 

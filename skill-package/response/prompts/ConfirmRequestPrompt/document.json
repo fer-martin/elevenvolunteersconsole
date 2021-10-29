@@ -56,6 +56,12 @@
                             "when": "${payload.statusResponse.status == 2}",
                             "contentType": "text",
                             "content": "hasta qué fecha quieres el servicio?"
+                        },
+                        {
+                            "type": "Speech",
+                            "when": "${payload.statusResponse.status == 3}",
+                            "contentType": "text",
+                            "content": "qué servicio quieres?"
                         }
                     ]
                 }

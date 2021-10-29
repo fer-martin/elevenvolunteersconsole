@@ -1,6 +1,8 @@
 {
     "version": "0.1",
-    "arguments": {},
+    "arguments": {
+        "statusResponse": "StatusResponse"
+    },
     "templates": {
         "prompt": {
             "name": "NewDowPrompt",
@@ -10,5 +12,5 @@
         "display": null
     },
     "situations": [],
-    "etag": ""
+    "etag": "K7GqOA+wmVqnUh3G4XkDIg=="
 }

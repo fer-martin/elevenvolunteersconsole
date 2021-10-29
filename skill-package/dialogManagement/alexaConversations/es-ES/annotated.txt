@@ -148,7 +148,7 @@ A: por cuánto tiempo?
 U: [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
 A: { call: APIAddDow(dow=$dow0, starttime=$starttime0, duration=$duration0, service=$service0) -> statusResponse0 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
 A: quiere agregar otro día de la semana?
 U: sí
 U: { userNlg: InvokeAffirm() }
@@ -165,7 +165,7 @@ A: por cuánto tiempo?
 U: [dos horas|AMAZON.DURATION -> duration1]
 U: { userNlg: USetInformDuration(duration=$duration1) }
 A: { call: APIAddDow(dow=$dow1, starttime=$time1, duration=$duration1, service=$service0) -> statusResponse1 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse1)) }
 A: quiere agregar otro día de la semana?
 U: no
 U: { userNlg: InvokeDeny() }
@@ -201,7 +201,7 @@ A: por cuánto tiempo?
 U: [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
 A: { call: APIAddDow(dow=$dow0, starttime=$time0, duration=$duration0, service=$service0) -> statusResponse0 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
 A: quiere agregar otro día de la semana?
 U: sí
 U: { userNlg: InvokeAffirm() }
@@ -214,7 +214,7 @@ A: por cuánto tiempo?
 U: por [dos horas|AMAZON.DURATION -> duration1]
 U: { userNlg: USetInformDuration(duration=$duration1) }
 A: { call: APIAddDow(dow=$dow1, starttime=$time1, duration=$duration1, service=$service0) -> statusResponse1 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse1)) }
 A: quiere agregar otro día de la semana?
 U: no
 U: { userNlg: InvokeDeny() }
@@ -250,7 +250,7 @@ A: por cuánto tiempo?
 U: por [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
 A: { call: APIAddDow(dow=$dow0, starttime=$time0, duration=$duration0, service=$service0) -> statusResponse0 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
 A: quiere agregar otro día de la semana?
 U: no
 U: { userNlg: InvokeDeny() }
@@ -286,7 +286,7 @@ A: por cuánto tiempo?
 U: por [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
 A: { call: APIAddDow(dow=$dow0, starttime=$time0, duration=$duration0, service=$service0) -> statusResponse0 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
 A: quiere agregar otro día de la semana?
 U: sí
 U: { userNlg: InvokeAffirm() }
@@ -295,7 +295,7 @@ A: qué día quiere agregar?
 U: los [martes|AMAZON.DayOfWeek -> dow1] desde las [7 a m|AMAZON.TIME -> time1] por [una hora|AMAZON.DURATION -> duration1]
 U: { userNlg: USetInformDowTimeDuration(dow=$dow1, time=$time1, duration=$duration1) }
 A: { call: APIAddDow(dow=$dow1, starttime=$time1, duration=$duration1, service=$service0) -> statusResponse1 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse1)) }
 A: quiere agregar otro día de la semana?
 U: no
 U: { userNlg: InvokeDeny() }
@@ -343,7 +343,7 @@ A: por cuánto tiempo?
 U: por [dos horas|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
 A: { call: APIAddDow(dow=$dow0, starttime=$starttime0, duration=$duration0, service=$service0, periodicity=$periodicity0) -> statusResponse0 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
 A: quiere agregar otro día de la semana?
 U: sí
 U: { userNlg: InvokeAffirm() }
@@ -356,7 +356,7 @@ A: a qué hora?
 U: a las [siete y media de la mañana|AMAZON.TIME -> time1] por [una hora|AMAZON.DURATION -> duration1]
 U: { userNlg: USetInformTimeDuration(time=$time1, duration=$duration1) }
 A: { call: APIAddDow(dow=$dow1, starttime=$time1, duration=$duration1, service=$service0, periodicity=$periodicity0) -> statusResponse1 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse1)) }
 A: quiere agregar otro día de la semana?
 U: no
 U: { userNlg: InvokeDeny() }
@@ -400,7 +400,7 @@ A: por cuánto tiempo?
 U: [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
 A: { call: APIAddDow(dow=$dow0, starttime=$starttime0, duration=$duration0, service=$service0, periodicity=$periodicity0) -> statusResponse0 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
 A: quiere agregar otro día de la semana?
 U: sí
 U: { userNlg: InvokeAffirm() }
@@ -417,7 +417,7 @@ A: por cuánto tiempo?
 U: por [dos horas|AMAZON.DURATION -> duration1]
 U: { userNlg: USetInformDuration(duration=$duration1) }
 A: { call: APIAddDow(dow=$dow1, starttime=$time1, duration=$duration1, service=$service0, periodicity=$periodicity0) -> statusResponse1 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse1)) }
 A: quiere agregar otro día de la semana?
 U: no
 U: { userNlg: InvokeDeny() }
@@ -633,7 +633,7 @@ A: por cuánto tiempo?
 U: por [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
 A: { call: APIAddDow(dow=$dow0, starttime=$time0, duration=$duration0, service=$service0) -> statusResponse0 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
 A: quiere agregar otro día de la semana?
 U: no
 U: { userNlg: InvokeDeny() }
@@ -675,7 +675,7 @@ A: por cuánto tiempo?
 U: por [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDuration(duration=$duration0) }
 A: { call: APIAddDow(dow=$dow0, starttime=$time0, duration=$duration0, service=$service0) -> statusResponse0 }
-A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse()) }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
 A: quiere agregar otro día de la semana?
 U: no
 U: { userNlg: InvokeDeny() }
@@ -704,3 +704,85 @@ A: { nlg: notifySuccess(api=APIRequestVolunteer, response=RequestConfirmedRespon
 A: el voluntario ha sido solicitado
 {end}
 
+{dialogName: RequestVolunteerOnceFailed3}
+{start}
+U: necesito un voluntario
+U: { userNlg: USetRequestVolunteer0() }
+A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestServiceResponse(),arguments=[service]}]) }
+A: para qué servicio
+U: un [perro guía|service -> service0]
+U: { userNlg: USetInformService(service=$service0) }
+A: { nlg: request(api=APIValidateArgsOnce, [{response=PeriodicityResponse(),arguments=[once]}]) }
+A: por única vez o recurrente
+U: [por única vez|once -> singleService0]
+U: { userNlg: USetInformOnce(once=$singleService0) }
+A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestDateResponse(),arguments=[date]}]) }
+A: cuándo?
+U: [mañana|AMAZON.DATE -> date0]
+U: { userNlg: USetInformDate(date=$date0) }
+A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
+A: a qué hora?
+U: a las [10 a m|AMAZON.TIME -> starttime0]
+U: { userNlg: USetInformTime(time=$starttime0) }
+A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestDurationResponse(),arguments=[duration]}]) }
+A: por cuánto tiempo
+U: [una hora|AMAZON.DURATION -> duration0]
+U: { userNlg: USetInformDuration(duration=$duration0) }
+A: { call: APIValidateArgsOnce(duration=$duration0, date=$date0, starttime=$starttime0, service=$service0, once=$singleService0) -> statusResponse0 HAVING ${statusResponse2.status == 3} }
+A: { nlg: notifyFailure(api=APIValidateArgsOnce, response=ConfirmRequestResponse(statusResponse=$statusResponse0)) }
+A: { nlg: requestAlternative(response=ConfirmRequestResponse(statusResponse=$statusResponse0), arguments=[service]) }
+A: El servicio es inválido. qué servicio quiere?
+U: [acompañamiento|service -> service1]
+U: { userNlg: USetInformService(service=$service1) }
+A: { call: APIValidateArgsOnce(duration=$duration0, date=$date0, starttime=$starttime0, service=$service1, once=$singleService0) -> statusResponse2 }
+A: { nlg: notifySuccess(api=APIValidateArgsOnce, response=ConfirmRequestResponse(statusResponse=$statusResponse2)) }
+A: { nlg: offer(api=APIRequestVolunteer, response=ConfirmRequestResponse(statusResponse=$statusResponse2), carryover_arguments=[], requested_arguments=[]) }
+A: ok. voy a solicitar el voluntario...
+U: sí
+U: { userNlg: USetAffirm() }
+A: { call: APIRequestVolunteer() -> statusResponse1 }
+A: { nlg: notifySuccess(api=APIRequestVolunteer, response=RequestConfirmedResponse(statusResponse=$statusResponse1)) }
+A: El voluntario fue solicitado.
+{end}
+
+{dialogName: RequestVolunteerRecurringFailed3}
+{start}
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|AMAZON.DayOfWeek -> dow0]
+U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
+A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
+A: a qué hora?
+U: a las [7 a m|AMAZON.TIME -> time0]
+U: { userNlg: USetInformTime(time=$time0) }
+A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[duration]}]) }
+A: por cuánto tiempo?
+U: por [una hora|AMAZON.DURATION -> duration0]
+U: { userNlg: USetInformDuration(duration=$duration0) }
+A: { call: APIAddDow(dow=$dow0, starttime=$time0, duration=$duration0, service=$service0) -> statusResponse4 HAVING ${statusResponse4.status == 3} }
+A: { nlg: notifyFailure(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse4)) }
+A: { nlg: requestAlternative(response=NewDowResponse(statusResponse=$statusResponse4), arguments=[service]) }
+A: el servicio es inválido. qué servicio quiere?
+U: un [perro guía|service -> service1]
+U: { userNlg: USetInformService(service=$service1) }
+A: { call: APIAddDow(dow=$dow0, starttime=$time0, duration=$duration0, service=$service1) -> statusResponse0 }
+A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }
+A: quiere agregar otro día de la semana?
+U: no
+U: { userNlg: InvokeDeny() }
+A: { nlg: request(api=APIValidateArgsRecurring, [{response=RequestSinceResponse(),arguments=[datesince]}]) }
+A: desde qué día?
+U: desde el [cinco de enero|AMAZON.DATE -> since0]
+U: { userNlg: USetInformDateSince(date=$since0) }
+A: { nlg: request(api=APIValidateArgsRecurring, [{response=RequestUntilResponse(),arguments=[dateuntil]}]) }
+A: hasta qué día?
+U: hasta el [31 de marzo|AMAZON.DATE -> until0]
+U: { userNlg: USetInformDateUntil(date=$until0) }
+A: { call: APIValidateArgsRecurring(dateuntil=$until0, datesince=$since0) -> statusResponse1 }
+A: { nlg: notifySuccess(api=APIValidateArgsRecurring, response=ConfirmRequestResponse(statusResponse=$statusResponse1)) }
+A: { nlg: offer(api=APIRequestVolunteer, response=ConfirmRequestResponse(statusResponse=$statusResponse1), carryover_arguments=[], requested_arguments=[]) }
+A: ok. voy a solicitar el voluntario...
+U: sí
+U: { userNlg: USetAffirm() }
+A: { call: APIRequestVolunteer() -> statusResponse3 }
+A: { nlg: notifySuccess(api=APIRequestVolunteer, response=RequestConfirmedResponse(statusResponse=$statusResponse3)) }
+A: el voluntario ha sido solicitado
+{end}
