@@ -62,6 +62,24 @@
                             "when": "${payload.statusResponse.status == 3}",
                             "contentType": "text",
                             "content": "qué servicio quieres?"
+                        },
+                        {
+                            "type": "Speech",
+                            "when": "${payload.statusResponse.status == 4}",
+                            "contentType": "text",
+                            "content": "cuándo quieres el servicio?"
+                        },
+                        {
+                            "type": "Speech",
+                            "when": "${payload.statusResponse.status == 5}",
+                            "contentType": "text",
+                            "content": "a qué hora quieres el servicio?"
+                        },
+                        {
+                            "type": "Speech",
+                            "when": "${payload.statusResponse.status == 6}",
+                            "contentType": "text",
+                            "content": "por cuánto tiempo quieres el servicio?"
                         }
                     ]
                 }

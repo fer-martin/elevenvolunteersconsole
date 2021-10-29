@@ -80,8 +80,22 @@ const APIValidateArgsOnceHandler = {
             let serviceHeardAs = util.getApiSlot(handlerInput, "service").heardAs
             status = 3
             message = `El servicio ${serviceHeardAs} no existe.`
+        } else if (!moment(date).isValid()) {
+            status = 4
+            message = "la fecha no es válida."
+        } else if (!moment(date).isAfter()) {
+            //Chequeamos fecha desde y hasta, y +90 días
+            status = 4
+            message = "la fecha no puede ser anterior a hoy."
+        } else if (!moment('2000-01-01T' + starttime).isValid()) {
+            //chequeamos si el starttime es valido
+            status = 5
+            message = "la hora no es válida"
+        } else if (moment.duration(duration).as("seconds") == 0) {
+            //chequeamos la duracion
+            status = 6
+            message = "la duración no es válida"
         }
-
 
         let params = {
             status: status,
@@ -116,29 +130,35 @@ const APIValidateArgsRecurringHandler = {
         ).join(" y ")
 
         let message = handlerInput.t('confirm-rec', sessionAttributes["service"], recurring, datesince, dateuntil)
+        let status = 0
 
         if (sessionAttributes["serviceid"] == "65100") {
             message = handlerInput.t('blind-families-only')
         }
 
+        //veamos si las fechas son validas
+        if (!moment(datesince).isValid()) {
+            status = 1
+            message = "la fecha de inicio no es válida."
+        } else if (!moment(dateuntil).isValid()) {
+            status = 2
+            message = "la fecha de finalización no es válida."
+        } else if (!moment(datesince).isAfter()) {
+            //Chequeamos fecha desde y hasta, y +90 días
+            status = 1
+            message = "la fecha de inicio no puede ser anterior a hoy."
+        } else if (!moment(dateuntil).isAfter(moment(datesince))) {
+            status = 2
+            message = "la fecha de finalización no puede ser anterior a la de inicio."
+        } else if (moment(dateuntil).isAfter(moment(datesince).add(90, 'days'))) {
+            status = 2
+            message = "la fecha de finalización no puede ser más de 90 días después del inicio."
+        }
+
         let params = {
-            status: 0,
+            status: status,
             message: message
         };
-
-        //Chequeamos fecha desde y hasta, y +90 días
-        if (!moment(datesince).isAfter()) {
-            params.status = 1
-            params.message = "la fecha de inicio no puede ser anterior a hoy."
-        }
-        if (!moment(dateuntil).isAfter(moment(datesince))) {
-            params.status = 2
-            params.message = "la fecha de finalización no puede ser anterior a la de inicio."
-        }
-        if (moment(dateuntil).isAfter(moment(datesince).add(90, 'days'))) {
-            params.status = 2
-            params.message = "la fecha de finalización no puede ser más de 90 días después del inicio."
-        }
 
         return handlerInput.responseBuilder
             .withApiResponse(params)
@@ -171,7 +191,7 @@ const APIAddDowHandler = {
         }
 
         sessionAttributes["dows"].push({
-            dow: dow,
+            dow: normalizeDow(dow),
             starttime: starttime,
             endtime: endtime,
             duration: duration
@@ -185,6 +205,18 @@ const APIAddDowHandler = {
             let serviceHeardAs = util.getApiSlot(handlerInput, "service").heardAs
             status = 3
             message = `El servicio ${serviceHeardAs} no existe.`
+        } else if (!["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo", "sábados", "domingos"].includes(dow.toLowerCase())) {
+            //chequeamos el dow
+            status = 7
+            message = `El día de la semana es inválido.`
+        } else if (!moment('2000-01-01T' + starttime).isValid()) {
+            //chequeamos si el starttime es valido
+            status = 5
+            message = "la hora no es válida"
+        } else if (moment.duration(duration).as("seconds") == 0) {
+            //chequeamos la duracion
+            status = 6
+            message = "la duración no es válida"
         }
 
         let params = {
@@ -197,6 +229,12 @@ const APIAddDowHandler = {
             .withShouldEndSession(false)
             .getResponse();
     }
+}
+
+//si el dia de la semana no termina en s, la agregamos
+function normalizeDow(dow) {
+    if (dow.slice(-1) != "s") return dow + "s"
+    return dow
 }
 
 /**
@@ -314,7 +352,7 @@ const APIServicesHelpHandler = {
             "<s>deportivo</s>",
             "<s>qué servicio deseas solicitar?</s>"
         ]
-        
+
         return handlerInput.responseBuilder
             .withApiResponse(response)
             .resetContext()
@@ -481,7 +519,7 @@ function altaServicioAlexa(handlerInput) {
     const repeticion = sessionAttributes["periodicity"]
     const periodico_dias = sessionAttributes["dows"]
 
-    if (!servicio || servicio == "") 
+    if (!servicio || servicio == "")
         return new Promise((resolve, reject) => resolve({ status: 3, message: "el servicio no es válido." }))
 
     console.log(`ENVIO AL WEBSERVICE altaServicioAlexa`);
@@ -519,7 +557,9 @@ function altaServicioAlexa(handlerInput) {
             'jueves': 'J~Jueves',
             'viernes': 'V~Viernes',
             'sábado': 'S~Sábado',
-            'domingo': 'D~Domingo'
+            'domingo': 'D~Domingo',
+            'sábados': 'S~Sábado',
+            'domingos': 'D~Domingo',
         }
 
         if (repeticion == 'recurrente') {
