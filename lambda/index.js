@@ -77,8 +77,9 @@ const APIValidateArgsOnceHandler = {
 
         //si me viene un servicio invalido (no tiene ID)
         if (!sessionAttributes["serviceid"]) {
+            let serviceHeardAs = util.getApiSlot(handlerInput, "service").heardAs
             status = 3
-            message = `El servicio ${service} no existe.`
+            message = `El servicio ${serviceHeardAs} no existe.`
         }
 
 
@@ -181,8 +182,9 @@ const APIAddDowHandler = {
 
         //si me viene un servicio invalido (no tiene ID)
         if (!sessionAttributes["serviceid"]) {
+            let serviceHeardAs = util.getApiSlot(handlerInput, "service").heardAs
             status = 3
-            message = `El servicio ${service} no existe.`
+            message = `El servicio ${serviceHeardAs} no existe.`
         }
 
         let params = {
@@ -478,6 +480,9 @@ function altaServicioAlexa(handlerInput) {
     const horahasta = sessionAttributes["endtime"]
     const repeticion = sessionAttributes["periodicity"]
     const periodico_dias = sessionAttributes["dows"]
+
+    if (!servicio || servicio == "") 
+        return new Promise((resolve, reject) => resolve({ status: 3, message: "el servicio no es válido." }))
 
     console.log(`ENVIO AL WEBSERVICE altaServicioAlexa`);
 
