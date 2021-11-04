@@ -909,7 +909,7 @@ A: { nlg: request(api=APIValidateArgsOnce, [{response=PeriodicityResponse(),argu
 A: por única vez o recurrente?
 U: [sólo por ésta vez|once -> once0]
 U: { userNlg: USetInformOnce(once=$once0) }
-A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestDateResponse(),arguments=[date,starttime]},{response=RequestTimeResponse(),arguments=[starttime]},{response=RequestDateResponse(),arguments=[date]}]) }
+A: { nlg: request(api=APIValidateArgsOnce, [{response=RequestDateResponse(),arguments=[date,starttime,duration]},{response=RequestDurationResponse(),arguments=[duration]},{response=RequestDateResponse(),arguments=[date]},{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: cuándo?
 U: [mañana|AMAZON.DATE -> date0]  [al mediodía|AMAZON.TIME -> time0] por [una hora|AMAZON.DURATION -> duration0]
 U: { userNlg: USetInformDateTimeDuration(date=$date0, time=$time0, duration=$duration0) }
