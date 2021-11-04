@@ -472,6 +472,81 @@
                     }
                 ],
                 "name": "once"
+            },
+            {
+                "values": [
+                    {
+                        "name": {
+                            "value": "lunes",
+                            "synonyms": [
+                                "el lunes",
+                                "los lunes",
+                                "todos los lunes"
+                            ]
+                        }
+                    },
+                    {
+                        "name": {
+                            "value": "martes",
+                            "synonyms": [
+                                "el martes",
+                                "los martes",
+                                "todos los martes"
+                            ]
+                        }
+                    },
+                    {
+                        "name": {
+                            "value": "miércoles",
+                            "synonyms": [
+                                "el miércoles",
+                                "los miércoles",
+                                "todos los miércoles"
+                            ]
+                        }
+                    },
+                    {
+                        "name": {
+                            "value": "jueves",
+                            "synonyms": [
+                                "el jueves",
+                                "los jueves",
+                                "todos los jueves"
+                            ]
+                        }
+                    },
+                    {
+                        "name": {
+                            "value": "viernes",
+                            "synonyms": [
+                                "el viernes",
+                                "los viernes",
+                                "todos los viernes"
+                            ]
+                        }
+                    },
+                    {
+                        "name": {
+                            "value": "sábado",
+                            "synonyms": [
+                                "el sábado",
+                                "los sábados",
+                                "todos los sábados"
+                            ]
+                        }
+                    },
+                    {
+                        "name": {
+                            "value": "domingo",
+                            "synonyms": [
+                                "el domingo",
+                                "los domingos",
+                                "todos los domingos"
+                            ]
+                        }
+                    }
+                ],
+                "name": "t_dow"
             }
         ]
     }
