@@ -137,7 +137,7 @@ A: El voluntario fue solicitado.
 
 {dialogName: RequestVolunteerRecurring0}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los lunes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los lunes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -154,7 +154,7 @@ U: sí
 U: { userNlg: InvokeAffirm() }
 A: { nlg: request(api=APIAddDow, [{response=RequestDowResponse(),arguments=[dow]}]) }
 A: qué día quiere agregar?
-U: los [martes|t_dow -> dow1]
+U: los [martes|AMAZON.DATE -> dow1]
 U: { userNlg: USetInformDow(dow=$dow1) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -190,7 +190,7 @@ A: el voluntario ha sido solicitado
 
 {dialogName: RequestVolunteerRecurring1}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los lunes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los lunes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -207,7 +207,7 @@ U: sí
 U: { userNlg: InvokeAffirm() }
 A: { nlg: request(api=APIAddDow, [{response=RequestDowResponse(),arguments=[dow]}]) }
 A: qué día quiere agregar?
-U: los [martes|t_dow -> dow1] a las [7 a m|AMAZON.TIME -> time1]
+U: los [martes|AMAZON.DATE -> dow1] a las [7 a m|AMAZON.TIME -> time1]
 U: { userNlg: USetInformDowTime(dow=$dow1, time=$time1) }
 A: { nlg: request(api=APIAddDow, [{response=RequestDurationResponse(),arguments=[duration]}]) }
 A: por cuánto tiempo?
@@ -239,7 +239,7 @@ A: el voluntario ha sido solicitado
 
 {dialogName: RequestVolunteerRecurring2}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -275,7 +275,7 @@ A: el voluntario ha sido solicitado
 
 {dialogName: RequestVolunteerRecurring3}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los lunes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los lunes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -292,7 +292,7 @@ U: sí
 U: { userNlg: InvokeAffirm() }
 A: { nlg: request(api=APIAddDow, [{response=RequestDowResponse(),arguments=[dow,starttime,duration]},{response=RequestDowResponse(),arguments=[dow]},{response=RequestTimeResponse(),arguments=[starttime]},{response=RequestDurationResponse(),arguments=[duration]}]) }
 A: qué día quiere agregar?
-U: los [martes|t_dow -> dow1] desde las [7 a m|AMAZON.TIME -> time1] por [una hora|AMAZON.DURATION -> duration1]
+U: los [martes|AMAZON.DATE -> dow1] desde las [7 a m|AMAZON.TIME -> time1] por [una hora|AMAZON.DURATION -> duration1]
 U: { userNlg: USetInformDowTimeDuration(dow=$dow1, time=$time1, duration=$duration1) }
 A: { call: APIAddDow(dow=$dow1, starttime=$time1, duration=$duration1, service=$service0) -> statusResponse1 }
 A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse1)) }
@@ -332,7 +332,7 @@ U: [recurrente|periodicity -> periodicity0]
 U: { userNlg: USetInformPeriodicity(periodicity=$periodicity0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestDowResponse(),arguments=[dow]}]) }
 A: para qué día de la semana?
-U: los [lunes|t_dow -> dow0]
+U: los [lunes|AMAZON.DATE -> dow0]
 U: { userNlg: USetInformDow(dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -349,7 +349,7 @@ U: sí
 U: { userNlg: InvokeAffirm() }
 A: { nlg: request(api=APIAddDow, [{response=RequestDowResponse(),arguments=[dow]}]) }
 A: qué día quiere agregar?
-U: los [martes|t_dow -> dow1]
+U: los [martes|AMAZON.DATE -> dow1]
 U: { userNlg: USetInformDow(dow=$dow1) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -389,7 +389,7 @@ U: [recurrente|periodicity -> periodicity0]
 U: { userNlg: USetInformPeriodicity(periodicity=$periodicity0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestDowResponse(),arguments=[dow]}]) }
 A: para qué día de la semana?
-U: los [lunes|t_dow -> dow0]
+U: los [lunes|AMAZON.DATE -> dow0]
 U: { userNlg: USetInformDow(dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -406,7 +406,7 @@ U: sí
 U: { userNlg: InvokeAffirm() }
 A: { nlg: request(api=APIAddDow, [{response=RequestDowResponse(),arguments=[dow]}]) }
 A: qué día quiere agregar?
-U: los [martes|t_dow -> dow1]
+U: los [martes|AMAZON.DATE -> dow1]
 U: { userNlg: USetInformDow(dow=$dow1) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -487,7 +487,7 @@ A: estos son los servicios
 
 {dialogName: RequestVolunteerRecurringFailed1}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -529,7 +529,7 @@ A: el voluntario ha sido solicitado
 
 {dialogName: RequestVolunteerRecurringFailed2}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -612,7 +612,7 @@ A: El voluntario fue solicitado.
 
 {dialogName: RequestVolunteerRecurringFailed3}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -777,7 +777,7 @@ A: El voluntario fue solicitado.
 
 {dialogName: RequestVolunteerRecurringFailed5}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -819,7 +819,7 @@ A: el voluntario ha sido solicitado
 
 {dialogName: RequestVolunteerRecurringFailed6}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -861,7 +861,7 @@ A: el voluntario ha sido solicitado
 
 {dialogName: RequestVolunteerRecurringFailed7}
 {start}
-U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|t_dow -> dow0]
+U: necesito un voluntario para [acompañamiento|service -> service0] todos [los viernes|AMAZON.DATE -> dow0]
 U: { userNlg: USetRequestVolunteer4(service=$service0, dow=$dow0) }
 A: { nlg: request(api=APIAddDow, [{response=RequestTimeResponse(),arguments=[starttime]}]) }
 A: a qué hora?
@@ -875,7 +875,7 @@ A: { call: APIAddDow(dow=$dow0, starttime=$time0, duration=$duration0, service=$
 A: { nlg: notifyFailure(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse4)) }
 A: { nlg: requestAlternative(response=NewDowResponse(statusResponse=$statusResponse4), arguments=[service]) }
 A: el día de la semana es inválido. qué día?
-U: los [sábados|t_dow -> dow1]
+U: los [sábados|AMAZON.DATE -> dow1]
 U: { userNlg: USetInformDow(dow=$dow1) }
 A: { call: APIAddDow(dow=$dow1, starttime=$time0, duration=$duration0, service=$service0) -> statusResponse0 }
 A: { nlg: notifySuccess(api=APIAddDow, response=NewDowResponse(statusResponse=$statusResponse0)) }

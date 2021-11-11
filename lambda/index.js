@@ -178,7 +178,12 @@ const APIAddDowHandler = {
 
         const service = util.getApiSlot(handlerInput, "service").resolved;
         const serviceid = util.getApiSlot(handlerInput, "service").id;
-        const dow = util.getApiSlot(handlerInput, "dow").resolved;
+        const dowasreceived = util.getApiSlot(handlerInput, "dow").resolved;
+
+        //this is the Osman trick: the dow is collected as a date! so here, I convert again the date to the
+        //corresponding day of the week
+        const dow = moment(dowasreceived).locale('es').format('dddd').toLowerCase()
+
         const starttime = util.getApiSlot(handlerInput, "starttime").resolved;
         const duration = util.getApiSlot(handlerInput, "duration").resolved;
         const endtime = moment('2000-01-01T' + starttime).add(moment.duration(duration)).locale('es').format('HH:mm')

@@ -472,52 +472,6 @@
                     }
                 ],
                 "name": "once"
-            },
-            {
-                "values": [
-                    {
-                        "name": {
-                            "value": "lunes"
-                        }
-                    },
-                    {
-                        "name": {
-                            "value": "martes"
-                        }
-                    },
-                    {
-                        "name": {
-                            "value": "miércoles"
-                        }
-                    },
-                    {
-                        "name": {
-                            "value": "jueves"
-                        }
-                    },
-                    {
-                        "name": {
-                            "value": "viernes"
-                        }
-                    },
-                    {
-                        "name": {
-                            "value": "sábado",
-                            "synonyms": [
-                                "sábados"
-                            ]
-                        }
-                    },
-                    {
-                        "name": {
-                            "value": "domingo",
-                            "synonyms": [
-                                "domingos"
-                            ]
-                        }
-                    }
-                ],
-                "name": "t_dow"
             }
         ]
     }
