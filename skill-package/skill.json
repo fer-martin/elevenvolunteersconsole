@@ -1,4 +1,26 @@
 {
+    "publishingInformation": {
+        "automaticDistribution": {
+            "isActive": false
+        },
+        "category": "EVENT_FINDERS",
+        "distributionCountries": [],
+        "isAvailableWorldwide": true,
+        "locales": {
+            "es-ES": {
+                "description": "Prueba de AC en ONCE.",
+                "examplePhrases": [
+                    "Alexa abre Conversación ONCE"
+                ],
+                "keywords": [],
+                "largeIconUri": "https://s3-eu-west-1.amazonaws.com/ask-pics-mindgeist/test512.png",
+                "name": "Prueba Conversación ONCE",
+                "smallIconUri": "https://s3-eu-west-1.amazonaws.com/ask-pics-mindgeist/test108.png",
+                "summary": "Test de ONCE"
+            }
+        },
+        "testingInstructions": "Account linking credentials: \nUSER 33960346H\nPASSWORD Once1111"
+    },
     "apis": {
         "custom": {
             "dialogManagement": {
@@ -111,32 +133,10 @@
         "isExportCompliant": true,
         "locales": {
             "es-ES": {
-                "privacyPolicyUrl": "http://mindgeist.com/PRIVACIDAD.html",
-                "termsOfUseUrl": "http://mindgeist.com/Terminosycondiciones.html"
+                "privacyPolicyUrl": "https://oauth.once.es/auth/clausula/volunt",
+                "termsOfUseUrl": "https://oauth.once.es/auth/terminos/volunt"
             }
         },
         "usesPersonalInfo": false
-    },
-    "publishingInformation": {
-        "automaticDistribution": {
-            "isActive": false
-        },
-        "category": "EVENT_FINDERS",
-        "distributionCountries": [],
-        "isAvailableWorldwide": true,
-        "locales": {
-            "es-ES": {
-                "description": "Prueba de AC en ONCE.",
-                "examplePhrases": [
-                    "Alexa abre Conversación ONCE"
-                ],
-                "keywords": [],
-                "largeIconUri": "https://s3-eu-west-1.amazonaws.com/ask-pics-mindgeist/test512.png",
-                "name": "Prueba Conversación ONCE",
-                "smallIconUri": "https://s3-eu-west-1.amazonaws.com/ask-pics-mindgeist/test108.png",
-                "summary": "Test de ONCE"
-            }
-        },
-        "testingInstructions": "Sample Testing Instructions."
     }
 }
