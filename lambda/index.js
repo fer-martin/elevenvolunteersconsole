@@ -86,7 +86,7 @@ const APIValidateArgsOnceHandler = {
         } else if (!moment(date).isAfter()) {
             //Chequeamos fecha desde y hasta, y +90 días
             status = 4
-            message = "la fecha no puede ser anterior a hoy."
+            message = "la fecha no puede ser anterior o igual a hoy."
         } else if (!moment('2000-01-01T' + starttime).isValid()) {
             //chequeamos si el starttime es valido
             status = 5
@@ -146,10 +146,10 @@ const APIValidateArgsRecurringHandler = {
         } else if (!moment(datesince).isAfter()) {
             //Chequeamos fecha desde y hasta, y +90 días
             status = 1
-            message = "la fecha de inicio no puede ser anterior a hoy."
+            message = "la fecha de inicio no puede ser anterior o igual a hoy."
         } else if (!moment(dateuntil).isAfter(moment(datesince))) {
             status = 2
-            message = "la fecha de finalización no puede ser anterior a la de inicio."
+            message = "la fecha de finalización no puede ser anterior o igual a la de inicio."
         } else if (moment(dateuntil).isAfter(moment(datesince).add(90, 'days'))) {
             status = 2
             message = "la fecha de finalización no puede ser más de 90 días después del inicio."
